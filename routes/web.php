@@ -38,6 +38,12 @@ Route::get('/addFees','FeesController@create');
 Route::get('/addExpenditure','ExpendituresController@create');
 // // route to add Users to the databse
 Route::get('/addUser','UsersController@create');
+//route to insert users into the database
+Route::post('/addUser/store','UsersController@store');
+
+Route::get('/userDetails','UsersController@index');
+// Route::resouce('/','UsersController@create');
+
 // Route::get();
 // Route::resource('fees','FeesController');
 // controller to display list of teachers

@@ -16,8 +16,8 @@
       </div><!-- /.container-fluid -->
     </div>
         <h1 style="margin-left:20px;">Add User</h1>
-            <form class="form-horizontal" action="/registerStudent" enctype="multipart/form-data">
-
+            <form class="form-horizontal" action="/addUser/store" enctype="multipart/form-data" method="POST">
+              @csrf
                   <div class="card-body">
                     <h3>User Details</h3>
                     <div class="form-group">
