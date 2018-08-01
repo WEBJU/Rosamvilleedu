@@ -16,8 +16,12 @@ Route::get('/', function () {
 });
 //route to the main dashboard
 Route::get('/dashboard','DashboardController@index');
+
 // route to add student to the databse
 Route::get('/addStudent','StudentsController@create');
+Route::get('/viewStudent','StudentsController@index');//show all students
+Route::get('/addparent/existing_parents/{id}','StudentsController@all_parents');//add existing parent
+
 // // route to add teachers to the databse
 Route::get('/addTeacher','TeachersController@create');
 // route to add class to the databse

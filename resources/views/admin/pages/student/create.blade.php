@@ -51,19 +51,13 @@
                         </div>
                   </div>
                     <div class="form-group">
-                      <label class="col-sm-2 control-label">Place of Birth</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="birth_place" placeholder="Place of Birth">
-                        </div>
-                    </div>
-                    <div class="form-group">
                       <label for="" class="col-sm-2 control-label">Select Religion</label>
                       <div class="col-sm-10">
                         <select class="form-control" id="select_religion">
-                          <option>Christian</option>
-                          <option>Hindu</option>
-                          <option>Muslim</option>
-                          <option>other</option>
+                          <option value="Christian">Christian</option>
+                          <option value="Hindu">Hindu</option>
+                          <option value="Muslim">Muslim</option>
+                          <option value="Others">other</option>
                         </select>
                       </div>
                     </div>
@@ -73,19 +67,24 @@
                         <input type="text" name="school_attended" class="form-control" id="former_school" placeholder="Primary/School Attended">
                       </div>
                     </div>
+
+                      <div class="form-group">
+                          <label>Number of Siblings</label>
+                          <div class="col-sm-10">
+                              <input type="number" class="form-control m-2" name="boys" id="boys" placeholder="Number of Siblings" >
+                          </div>
+                      </div>
+
                     <div class="form-group">
                       <label>Relevant medical information(Please indicate if he/she suffers from any disease)</label>
                       <textarea class="form-control"name="medical_info" rows="5" ></textarea>
                     </div>
-                    <div class="form-group">
-                      <label>Number of Children in the family</label>
-                      <div class="form-inline">
-                      <div class="col-sm-10">
-                        <input type="number" class="form-control m-2" name="boys" id="boys" placeholder="Boys" ><input type="number" name="girls" class="form-control" id="boys" placeholder="Girls">
+
+                      <div class="form-group m-2">
+                          <button  type="submit"  class="btn btn-primary mb-2">Submit Details</button>
                       </div>
-                    </div>
                   </div>
-                  <hr>
+                  <!--
                   <h3 class="text-info">Parents/Guardian Information</h3>
                     <h5 class="text-secondary"> Fathers Information</h5>
                     <div class="form-group">
@@ -207,5 +206,6 @@
                   </div>
 
                   <!-- /.card-footer -->
+
                 </form>
   @endsection
