@@ -15,7 +15,7 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');//foreign key to user_id
+            $table->integer('user_id');//foreign key to user.id
             $table->string('teacher_tsc_no')->nullable();//unique
             /*
             $table->string('teacher.national_id');//remove exists in users table
