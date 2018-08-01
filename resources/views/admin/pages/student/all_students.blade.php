@@ -51,7 +51,7 @@
                     <td>
 
                         <a href="/addparent/existing_parents/1" class="btn btn-primary">Existing parent</a>
-                        <a href="#" class="btn btn-success">New parent </a>
+                        <a href="#" class="btn btn-success" id="existing_parent">New parent </a>
                     </td>
 
                     <td>
@@ -64,4 +64,47 @@
         </div>
 
     </div>
+
+    <!--The modals-->
+    <!--The new parent modal-->
+    <div class="modal fade" id="parentModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Add Parent to Student John Doe</h4>
+                   <button type="button" class="close" data-dismiss="modal">&times;</button><br>
+
+                </div>
+
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="parentType">Select Category</label>
+                            <select name="parent_category" class="form-control">
+                                <option value="1">Single Parent</option>
+                                <option value="1">Guardian</option>
+                                <option value="2">Parents</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        //launch the new parent modal
+        $(document).ready(function () {
+            $('#existing_parent').click(function () {
+                $('#parentModal').modal();
+            });
+        });
+    </script>
 @endsection
