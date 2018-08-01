@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Subject;
 
 class SubjectsController extends Controller
 {
@@ -13,7 +14,8 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.subject.view_subject');
+        $sbjs = Subject::all();
+        return view('admin.pages.subject.view_subject')->with('sbjs', $sbjs);
     }
 
     /**
@@ -34,7 +36,15 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'subject_name'=>'required',
+        ]);
+
+        $sbj = new Subject;
+        $sbj->subject_name = $request->input('subject_name');
+        $sbj->save();
+
+        return redirect('subject.create');
     }
 
     /**

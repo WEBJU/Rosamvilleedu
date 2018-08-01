@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Classes;
 
 class ClassController extends Controller
 {
@@ -34,7 +35,25 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'class_name'=>'required',
+            'class_capacity'=>'required',
+            'class_teacher'=>'required',
+        ]);
+
+        $cls = new Classes;
+        $cls->class_name = $request->input('class_name');
+        $cls->class_capacity = $request->input('class_capacity');
+        $cls->class_prefect = $request->input('class_prefect');
+        $cls->class_teacher = $request->input('class_teacher');
+        $cls->save();
+
+        return view('admin.pages.class.create');
+
+        return "am here";
+
+
+
     }
 
     /**

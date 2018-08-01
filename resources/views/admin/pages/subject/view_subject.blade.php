@@ -35,11 +35,17 @@
 
           </thead>
           <tbody>
-          <tr>
-            <td>1</td>
-            <td>Dummmy Subject</td>
-            <td><a href="#" class="btn btn-danger m-2">Delete</a><a href="#" class="btn btn-info">Edit</a></td>
-
-          </tr>
+            @if(count($sbjs) > 0)
+              @foreach($sbjs as $sbj)
+              <tr>
+                  <td>{{$sbj->id}}</td>
+                  <td>{{$sbj->subject_name}}</td>
+                  <td><a href="/addSubject/delete" class="btn btn-danger m-2">Delete</a><a href="/addSubject/update" class="btn btn-info">Edit</a></td>
+      
+                </tr>
+              @endforeach
+            @endif
+          
         </tbody>
+        </table>
   @endsection

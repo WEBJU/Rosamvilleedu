@@ -16,14 +16,14 @@
       </div><!-- /.container-fluid -->
     </div>
         <h1 style="margin-left:20px;">Add Subject</h1>
-            <form class="form-horizontal" action="/registerStudent" enctype="multipart/form-data">
-
+            <form class="form-horizontal" action="/addSubject/store" enctype="multipart/form-data" method="POST">
+              @csrf
                   <div class="card-body">
                     <h3>Subject's Information</h3>
                     <div class="form-group">
                       <label for="surname" class="col-sm-2 control-label">Subject Name</label>
                       <div class="col-sm-10">
-                        <input type="text" name="surname"class="form-control" id="surname" placeholder="Surname">
+                        <input type="text" name="subject_name"class="form-control" id="subject_name" placeholder="Surname">
                       </div>
                     </div>
                           <div class="form-group m-2">

@@ -322,6 +322,7 @@ class ComposerStaticInit9e494484eb0207d70207602ee396c7c9
     public static $classMap = array (
         'App\\Account' => __DIR__ . '/../..' . '/app/Account.php',
         'App\\Attendance' => __DIR__ . '/../..' . '/app/Attendance.php',
+        'App\\ClassRoom' => __DIR__ . '/../..' . '/app/ClassRoom.php',
         'App\\Classes' => __DIR__ . '/../..' . '/app/Class.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exam' => __DIR__ . '/../..' . '/app/Exam.php',
@@ -367,6 +368,7 @@ class ComposerStaticInit9e494484eb0207d70207602ee396c7c9
         'App\\Subject' => __DIR__ . '/../..' . '/app/Subject.php',
         'App\\Teachers' => __DIR__ . '/../..' . '/app/Teachers.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\Users' => __DIR__ . '/../..' . '/app/Users.php',
         'App\\classess' => __DIR__ . '/../..' . '/app/classess.php',
         'App\\departments' => __DIR__ . '/../..' . '/app/departments.php',
         'App\\non_staff' => __DIR__ . '/../..' . '/app/non_staff.php',
