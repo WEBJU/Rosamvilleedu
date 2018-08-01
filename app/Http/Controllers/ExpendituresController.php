@@ -13,7 +13,7 @@ class ExpendituresController extends Controller
      */
     public function index()
     {
-        //
+      return view('admin.pages.expenditures.view_expenditures');
     }
 
     /**

@@ -39,4 +39,8 @@ Route::get('/addUser','UsersController@create');
 // controller to display list of teachers
 Route::get('/viewTeachers','TeachersController@displayTeachers');
 //route to get fee details
-Route::get('feeDetails','FeesController@index');
+Route::get('/feeDetails','FeesController@index');
+//get subject Details
+Route::get('/viewSubjectDetails','SubjectsController@index');
+//Route to display expenditures
+Route::get('/expenditureDetails','ExpendituresController@index');
