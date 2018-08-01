@@ -17,7 +17,9 @@ class CreateNonStaffsTable extends Migration
             $table->increments('id');//non-staff_id
             $table->integer('department_id');//foreign key to department.id
             $table->string('national_id');
-            $table->string('name');
+            $table->string('sur_name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('phone_no');
             $table->string('residence');
             $table->timestamps();
