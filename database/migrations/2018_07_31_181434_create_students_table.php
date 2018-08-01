@@ -21,6 +21,7 @@ class CreateStudentsTable extends Migration
             $table->date('student_date_of_birth')->nullable();
             $table->string('student_religion');
             $table->string('student_medical_info');
+            $table->string('primary_school_attended');
             $table->string('student_number_of_siblings');
             $table->string('emergency_name');
             $table->string('emergency_relationship');
