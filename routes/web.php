@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('admin.index');
 });
+//route to the main dashboard
 Route::get('/dashboard','DashboardController@index');
 Route::get('/addStudent','StudentsController@create');
 Route::get('/addTeacher','TeachersController@create');
