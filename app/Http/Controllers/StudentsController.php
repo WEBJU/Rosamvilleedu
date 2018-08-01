@@ -2,18 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display a listing of the resource
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        //show all students
+        $students = Student::all();
+        return view('admin.pages.student.all_students',['students'=>$students]);
+    }
 
+    /*
+     * Display all parents
+     *
+     */
+    public function all_parents($id){
+        //check if student has two parents / guardian /single_parent
+        /*
+         *
+         */
+        return view('admin.pages.student.view_parents');
     }
 
     /**

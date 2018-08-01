@@ -17,6 +17,7 @@ class CreateParentChildRelationsTable extends Migration
             $table->increments('id');//relation_id
             $table->integer('parent_id');//foreign key to parents.id
             $table->integer('student_id');//foreign key to student.id
+            $table->integer('number_of_parents');//one_parent/guardian/two_parents i.e 1 / 2
             $table->timestamps();
         });
     }
