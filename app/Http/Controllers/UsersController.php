@@ -23,7 +23,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.non_teaching_staff.create');
+        return view('admin.pages.users.create');
     }
 
     /**
