@@ -17,12 +17,7 @@ class CreateTeachersTable extends Migration
             $table->increments('id');
             $table->integer('user_id');//foreign key to user.id
             $table->string('teacher_tsc_no')->nullable();//unique
-            /*
-            $table->string('teacher.national_id');//remove exists in users table
-            $table->string('teacher_name');//remove exists in users table
-            $table->string('teacher_phone');//remove exists in users table
-            $table->string('teacher_extra_info');//remove exists in users table
-            */
+            $table->string('subject_specialized');
             $table->timestamps();
         });
     }
