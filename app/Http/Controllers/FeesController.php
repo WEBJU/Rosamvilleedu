@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 class FeesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the fees.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+      return view('admin.pages.fees.view_fees');
     }
 
     /**

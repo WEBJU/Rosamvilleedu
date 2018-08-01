@@ -15,7 +15,14 @@ class TeachersController extends Controller
     {
 
     }
-
+    /**
+     * Show the table for displaying a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function displayTeachers(){
+      return view('admin.pages.teacher.view_teacher');
+    }
     /**
      * Show the form for creating a new resource.
      *

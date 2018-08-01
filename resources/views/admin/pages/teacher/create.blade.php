@@ -16,7 +16,7 @@
       </div><!-- /.container-fluid -->
     </div>
         <h1 style="margin-left:20px;">Add Teacher</h1>
-            <form class="form-horizontal" action="/registerStudent" enctype="multipart/form-data">
+            <form class="form-horizontal" action="/registerTeacher" enctype="multipart/form-data">
 
                   <div class="card-body">
                     <h3>Teacher's Information</h3>

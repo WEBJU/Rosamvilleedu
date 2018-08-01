@@ -21,9 +21,9 @@
                   <div class="card-body">
                     <h3>Fee Payment Details</h3>
                     <div class="form-group">
-                      <label for="surname" class="col-sm-2 control-label">Admission Number</label>
+                      <label for="surname" class="col-sm-2 control-label">Student ID</label>
                       <div class="col-sm-10">
-                        <input type="text" name="surname"class="form-control" id="surname" placeholder="Admission Number">
+                        <input type="text" name="surname"class="form-control" id="surname" placeholder="Student ID">
                       </div>
                     </div>
                     <div class="form-group">
@@ -37,15 +37,21 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="surname" class="col-sm-2 control-label">Amount</label>
+                      <label for="surname" class="col-sm-2 control-label">Fees </label>
                       <div class="col-sm-10">
-                        <input type="text" name="amount"class="form-control" id="amount" placeholder="Amount">
+                        <input type="text" name="amount"class="form-control" id="amount" placeholder="Amount to be Paid">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="surname" class="col-sm-2 control-label">Student Name</label>
+                      <label for="surname" class="col-sm-2 control-label">Amount Paid</label>
                       <div class="col-sm-10">
-                        <input type="text" name="surname"class="form-control" id="surname" placeholder="Surname">
+                        <input type="text" name="amount"class="form-control" id="amount_paid" placeholder="Amount Paid">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="surname" class="col-sm-2 control-label">Class ID</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="surname"class="form-control" id="class_id" placeholder="Class ID">
                       </div>
                     </div>
                     <div class="form-group">
@@ -58,6 +64,12 @@
                                 <span class="fa fa-calender"></span>
                             </span>
                         </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="surname" class="col-sm-2 control-label">Balance</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="surname"class="form-control" id="balance" placeholder="Balance">
+                      </div>
                     </div>
                           <div class="form-group m-2">
                               <button  type="submit"  class="btn btn-primary mb-2">Add Fees</button>
