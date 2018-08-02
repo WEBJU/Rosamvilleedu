@@ -21,6 +21,9 @@ Route::get('/dashboard','DashboardController@index');
 Route::get('/addStudent','StudentsController@create');
 Route::get('/viewStudent','StudentsController@index');//show all students
 Route::get('/addparent/existing_parents/{id}','StudentsController@all_parents');//add existing parent
+Route::post('/registerStudent','StudentsController@store');//store new student information
+Route::get('/searchStudent','StudentsController@search');
+//Route::get('/searchStudent/','StudentsController@searchForm');
 
 // // route to add teachers to the databse
 Route::get('/addTeacher','TeachersController@create');
@@ -46,10 +49,11 @@ Route::get('/saveExam','ExamsController@store');
 Route::get('/addResults','ExamsController@addResult');
 // route to add fees details to the databse
 Route::post('/addFees/store','FeesController@store');
-//route to view the fee page 
+//route to view the fee page
 Route::get('/addFees','FeesController@create');
-// route to add school expenditure to the databse
+// route to display a form to expenditure to the databse
 Route::get('/addExpenditure','ExpendituresController@create');
+Route::post('/saveExpenditure','ExpendituresController@store');
 // // route to add Users to the databse
 Route::get('/addUser','UsersController@create');
 //route to insert users into the database

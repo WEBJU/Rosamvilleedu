@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Expenditure;
 class ExpendituresController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class ExpendituresController extends Controller
      */
     public function index()
     {
-      return view('admin.pages.expenditures.view_expenditures');
+      $expenditures=Expenditure::All();
+      return view('admin.pages.expenditures.view_expenditures')->with('expenditures',$expenditures);
     }
 
     /**
@@ -34,7 +35,19 @@ class ExpendituresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+          'expenditure'=>'required',
+          'description'=>'required',
+          'amount'=>'required',
+          'date_spend'=>'required'
+        ]);
+        $expenditure=new Expenditure;
+        $expenditure->expenditure_type=$request->input('expenditure');
+        $expenditure->description=$request->input('description');
+        $expenditure->amount_spend=$request->input('amount');
+        $expenditure->date_spend=$request->input('date_spend');
+        $expenditure->save();
+        return redirect('/addExpenditure')->with('success','Expenditure created successfully');
     }
 
     /**

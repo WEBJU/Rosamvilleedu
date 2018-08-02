@@ -4,19 +4,19 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Expenditure</h1>
+            <h1 class="m-0 text-dark">Class</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-              <li class="breadcrumb-item active">Expenditures List</li>
+              <li class="breadcrumb-item active">Classs List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-      <a href="/addExpenditure" class="btn btn-primary ml-2">Add New Expenditure</a>
-        <h1 style="margin-left:20px;">View Expenditure</h1>
+      <a href="/addClass" class="btn btn-primary ml-2">Add New Class</a>
+        <h1 style="margin-left:20px;">View Class</h1>
         <form action="#" method="get" class="sidebar-form m-2">
           <div class="input-group">
             <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -29,7 +29,7 @@
         <table  class="table table-bordered table-striped">
           <thead>
           <tr>
-            <th>Expenditure Type</th>
+            <th>Class Type</th>
             <th>Description</th>
             <th>Amount</th>
             <th>Date Spend</th>
@@ -38,13 +38,13 @@
 
           </thead>
           <tbody>
-            @if (count($expenditures)>0)
-              @foreach ($expenditures as $expenditure)
+            @if (count($Classs)>0)
+              @foreach ($Classs as $Class)
           <tr>
-            <td>{{$expenditure->expenditure_type}}</td>
-            <td>{{$expenditure->description}}</td>
-            <td>Kshs.{{$expenditure->amount_spend}}</td>
-            <td>{{$expenditure->date_spend}}</td>
+            <td>{{}}</td>
+            <td>{{}}</td>
+            <td>Kshs.{{}}</td>
+            <td>{{}}</td>
             <td><a href="#" class="btn btn-info">Edit</a><a href="#" class="btn btn-danger m-2">Delete</a><a href="#" class="btn btn-secondary">Print Details</a></td>
 
           </tr>

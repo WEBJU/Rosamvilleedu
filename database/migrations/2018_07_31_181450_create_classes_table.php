@@ -17,7 +17,7 @@ class CreateClassesTable extends Migration
             $table->increments('id');//class_id
             $table->string('class_name');
             $table->string('class_capacity');//how much can it hold
-            $table->string('class_prefect')->nullable();
+            $table->integer('class_prefect_id')->nullable();//foreign key to student.id
             $table->integer('class_teacher_id');//foreign key to users.id
             // $table->string('class_year');
             $table->timestamps();
