@@ -32,6 +32,8 @@ Route::get('/addTeacher','TeachersController@create');
 Route::post('/addTeacher/store','TeachersController@store');
 // route to add class to the databse
 Route::get('/viewTeachers','TeachersController@index');
+// route to delete teacher's information from the databse
+Route::post('/viewTeachers/destroy','TeachersController@destroy');
 // route to add class to the databse
 Route::post('/addClass/store','ClassController@store');
 //route to view class form

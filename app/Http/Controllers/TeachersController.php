@@ -126,8 +126,12 @@ class TeachersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $teacher_id = $request->input('delete_teacher');
+        $teacher = Teachers::where('user_id', $teacher_id); 
+               
+        $teacher->delete();      
+        return redirect('/viewTeachers')->with('success', 'Details deleted Successfully');
     }
 }
