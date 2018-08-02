@@ -82,7 +82,7 @@ class TeachersController extends Controller
         $teacher->subject_specialized = $request->input('subjects_taught');
         $teacher->save();
 
-        return redirect('/addTeacher')->with('success','Subject created successfully');
+        return redirect('/addTeacher')->with('success','Teacher added successfully');
         
     }
 
@@ -129,9 +129,13 @@ class TeachersController extends Controller
     public function destroy(Request $request)
     {
         $teacher_id = $request->input('delete_teacher');
-        $teacher = Teachers::where('user_id', $teacher_id); 
-               
-        $teacher->delete();      
+        $teacher = Teachers::where('user_id', $teacher_id);
+        
+        if($teacher->delete()){
+            $user = Users::where('id', $teacher_id);             
+            $user->delete();
+        }               
+             
         return redirect('/viewTeachers')->with('success', 'Details deleted Successfully');
     }
 }
