@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Fees;
 class FeesController extends Controller
 {
     /**
@@ -34,7 +34,29 @@ class FeesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $this->validate($request,[
+            'student_id'=>'required',
+            'school_terms'=>'required',
+            'total_fees'=>'required',
+            'amount_paid'=>'required',
+            'class_id'=>'required',
+            'date_of_payment'=>'required',
+            'fee_balance'=>'required',
+        ]);
+
+        $fee = new Fees;
+        $fee->student_id = $request->input('student_id');
+        $fee->student_id = $request->input('school_terms');
+        $fee->amount_to_be_paid = $request->input('total_fees');
+        $fee->amount_id = $request->input('amount_paid');
+        $fee->class_id = $request->input('class_id');
+        $fee->date_paid = $request->input('date_of_payment');
+        $fee->balancee = $request->input('fee_balance');
+        $fee->save();
+
+        return view();
+        
     }
 
     /**

@@ -19,7 +19,7 @@ class CreateClassesTable extends Migration
             $table->string('class_capacity');//how much can it hold
             $table->string('class_prefect')->nullable();
             $table->integer('class_teacher_id');//foreign key to users.id
-            $table->string('class_year');
+            // $table->string('class_year');
             $table->timestamps();
         });
     }

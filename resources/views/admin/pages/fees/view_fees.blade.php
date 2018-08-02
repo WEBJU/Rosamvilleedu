@@ -11,10 +11,14 @@
               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
               <li class="breadcrumb-item active">Fees</li>
             </ol>
+            <a href="/addUser" class="btn btn-default">Go Back</a>
+            <br>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
+    <a href="/addUser" class="btn btn-default">Go Back</a>
+    <br>
         <h1 style="margin-left:20px;">View Fees</h1>
         <form action="#" method="get" class="sidebar-form m-2">
           <div class="input-group">

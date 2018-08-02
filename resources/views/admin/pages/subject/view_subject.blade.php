@@ -38,6 +38,19 @@
 
           </thead>
           <tbody>
+            @if(count($sbjs) > 0)
+              @foreach($sbjs as $sbj)
+              <tr>
+                  <td>{{$sbj->id}}</td>
+                  <td>{{$sbj->subject_name}}</td>
+                  <td><a href="/addSubject/delete" class="btn btn-danger m-2">Delete</a><a href="/addSubject/update" class="btn btn-info">Edit</a></td>
+
+                </tr>
+              @endforeach
+            @endif
+
+        </tbody>
+        </table>
             {{-- check if subject is greater than 1 --}}
               @if(count($subjects) > 1)
                 {{-- loop through the subjects --}}

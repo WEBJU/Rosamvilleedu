@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Users;
 
 class UsersController extends Controller
 {
@@ -13,7 +14,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $user = Users::all();
+        return view('admin.pages.users.view')->with('user', $user);
     }
 
     /**
@@ -23,7 +25,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.non_teaching_staff.create');
+        return view('admin.pages.users.create');
     }
 
     /**
@@ -34,7 +36,30 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'sir_name'=>'required',
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'national_id'=>'required',
+            'phone_number'=>'required',
+            'email_address'=>'required',
+            'password'=>'required',
+
+        ]);
+
+        $user = new Users;
+        $user->sur_name = $request->input('sir_name');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->national_id = $request->input('national_id');
+        $user->phone_no = $request->input('phone_number');
+        $user->email = $request->input('email_address');
+        $user->password = $request->input('password');
+        $user->extra_information = $request->input('other_info');
+        $user->save();
+
+        return redirect('admin.pages.users.create');
+
     }
 
     /**
