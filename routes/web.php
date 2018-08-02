@@ -28,8 +28,11 @@ Route::get('/addTeacher','TeachersController@create');
 Route::get('/addClass','ClassController@create');
 // route to add subject to the databse
 Route::get('/addSubject','SubjectsController@create');
+Route::get('/saveSubject','SubjectsController@store');
 // route to add Exam to the databse
 Route::get('/addExam','ExamsController@create');
+Route::get('/viewExamDetails','ExamsController@index');
+Route::get('/saveExam','ExamsController@store');
 // route to add Exam Results to the databse
 Route::get('/addResults','ExamsController@addResult');
 // route to add fees details to the databse

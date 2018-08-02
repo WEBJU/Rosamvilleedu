@@ -16,9 +16,9 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->increments('id');
             $table->string('exam_type');
-            $table->date('exam_start_date');
-            $table->date('exam_end_date');
-            $table->date('exam_release_date');
+            $table->date('exam_start_date')->format('m-d-y');
+            $table->date('exam_end_date')->format('m-d-y');
+            $table->date('exam_release_date')->format('m-d-y');
             $table->timestamps();
         });
     }

@@ -25,6 +25,9 @@
                 </span>
           </div>
         </form>
+
+
+
         <table  class="table table-bordered table-striped">
           <thead>
           <tr>
@@ -35,11 +38,16 @@
 
           </thead>
           <tbody>
+            {{-- check if subject is greater than 1 --}}
+              @if(count($subjects) > 1)
+                {{-- loop through the subjects --}}
+              @foreach ($subjects as $subject)
           <tr>
-            <td>1</td>
-            <td>Dummmy Subject</td>
-            <td><a href="#" class="btn btn-danger m-2">Delete</a><a href="#" class="btn btn-info">Edit</a></td>
-
+            <td>{{$subject->id}}</td>
+            <td>{{$subject->subject_name}}</td>
+            <td><a href="/deleteSubject/delete/{{$subject->id}}" class="btn btn-danger mr-1">Delete</a><a href="/editSubject/edit/{{$subject->id}}" class="btn btn-info">Edit</a></td>
           </tr>
         </tbody>
+          @endforeach
+          @endif
   @endsection

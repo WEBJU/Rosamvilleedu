@@ -16,14 +16,14 @@
       </div><!-- /.container-fluid -->
     </div>
         <h1 style="margin-left:20px;">Add Exams</h1>
-            <form class="form-horizontal" action="/registerStudent" enctype="multipart/form-data">
+            <form class="form-horizontal" action="/saveExam" enctype="multipart/form-data">
 
                   <div class="card-body">
                     <h3>Exams Information</h3>
                     <div class="form-group">
                       <label for="" class="col-sm-2 control-label">Type of Exam</label>
                       <div class="col-sm-10">
-                        <select class="form-control" id="select_religion">
+                        <select name="term"class="form-control" >
                           <option>Mid Term</option>
                           <option>End Term</option>
                           <option>Special Exam</option>
@@ -32,9 +32,9 @@
                     </div>
                     <div class="form-group">
                         <label for="other_name" class="col-sm-2 control-label">Start Date</label>
-                          <div class="input-group date" data-provide="datepicker">
+                          <div class="input-group date" data-provide="">
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" name="start_date">
+                              <input type="date" class="form-control" name="start_date">
                             </div>
                             <span class="input-group-addon">
                                 <span class="fa fa-calender"></span>
@@ -43,9 +43,9 @@
                   </div>
                   <div class="form-group">
                       <label for="other_name" class="col-sm-2 control-label">End Date</label>
-                        <div class="input-group date" data-provide="datepicker">
+                        <div class="input-group date" data-provide="">
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" name="end_date">
+                            <input type="date" class="form-control" name="end_date">
                           </div>
                           <span class="input-group-addon">
                               <span class="fa fa-calender"></span>
@@ -54,9 +54,9 @@
                 </div>
                 <div class="form-group">
                     <label for="other_name" class="col-sm-2 control-label">Release Date</label>
-                      <div class="input-group date" data-provide="datepicker">
+                      <div class="input-group date" data-provide="">
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="release_date">
+                          <input type="date" class="form-control" name="release_date">
                         </div>
                         <span class="input-group-addon">
                             <span class="fa fa-calender"></span>

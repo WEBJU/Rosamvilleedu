@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Exam;
 class ExamsController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class ExamsController extends Controller
      */
     public function index()
     {
-        //
+        $exams=Exam::All();
+        return view('admin.pages.exam.exam_details')->with('exams',$exams);
     }
 
     /**
@@ -25,6 +26,12 @@ class ExamsController extends Controller
     {
           return view('admin.pages.exam.create');
     }
+    /**
+     * Store    exam results in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function addResult(){
           return view('admin.pages.exam.add_result');
     }
@@ -37,7 +44,20 @@ class ExamsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+          'term'=>'required',
+          'start_date'=>'required',
+          'end_date'=>'required',
+          'release_date'=>'required'
+        ]);
+        $exam=new Exam;
+        $exam->exam_type=$request->input('term');
+        $exam->exam_start_date=$request->input('start_date');
+        $exam->exam_end_date=$request->input('end_date');
+        $exam->exam_release_date=$request->input('release_date');
+        $exam->save();
+        return redirect('/addExam')->with('success','New exam added Successfully');
+
     }
 
     /**

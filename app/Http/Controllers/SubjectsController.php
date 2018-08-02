@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Subject;
 class SubjectsController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class SubjectsController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.subject.view_subject');
+        $subjects=Subject::All();
+        return view('admin.pages.subject.view_subject')->with('subjects',$subjects);
     }
 
     /**
@@ -34,7 +35,15 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // form validation
+        $this->validate($request,[
+          'subject_name'=>'required'
+        ]);
+        //create subject
+        $subject=new Subject;
+        $subject->subject_name=$request->input('subject_name');
+        $subject->save();
+        return redirect('/addSubject')->with('success','Subject created successfully');
     }
 
     /**
@@ -56,7 +65,8 @@ class SubjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subject=Subject::find($id);
+        return view('admin.pages.subject.edit');
     }
 
     /**
