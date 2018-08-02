@@ -24,6 +24,9 @@ Route::get('/addparent/existing_parents/{id}','StudentsController@all_parents');
 
 // // route to add teachers to the databse
 Route::get('/addTeacher','TeachersController@create');
+
+// // route to add teachers to the databse
+Route::post('/addTeacher/store','TeachersController@store');
 // route to add class to the databse
 Route::post('/addClass/store','ClassController@store');
 //route to view class form
