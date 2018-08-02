@@ -16,44 +16,60 @@
       </div><!-- /.container-fluid -->
     </div>
         <h1 style="margin-left:20px;">Add Student</h1>
-            <form class="form-horizontal" action="/registerStudent" enctype="multipart/form-data">
+            <form class="form-horizontal" action="/registerStudent" enctype="multipart/form-data" method="post">
+                {{csrf_field()}}
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            <!--if errors exist print all of them-->
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+            <!--Check for sucess message-->
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{session()->get('message')}}
+                    </div>
+                @endif
+
 
                   <div class="card-body">
                     <p class="text-info">Student Information</p>
                     <div class="form-group">
                       <label for="surname" class="col-sm-2 control-label">Surname</label>
                       <div class="col-sm-10">
-                        <input type="text" name="surname"class="form-control" id="surname" placeholder="Surname">
+                        <input type="text" name="surname"class="form-control" id="surname" placeholder="Surname" value="{{old('surname')}}" required>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="fname" class="col-sm-2 control-label">First Name</label>
 
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="first_name" id="fname" placeholder="First Name">
+                        <input type="text" class="form-control" name="first_name" id="fname" placeholder="First Name" value="{{old('first_name')}}" required>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="other_name" class="col-sm-2 control-label">Other Name</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="other_name" placeholder="Other Name">
+                        <input type="text" class="form-control" name="other_name" id="other_name" placeholder="Other Name" value="{{old('other_name')}}" required>
                       </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="other_name" class="col-sm-2 control-label">Pick date of Birth</label>
-                          <div class="input-group date" data-provide="datepicker">
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" name="Date_of_Birth">
-                            </div>
-                            <span class="input-group-addon">
-                                <span class="fa fa-calender"></span>
-                            </span>
-                        </div>
-                  </div>
+                      <label for="" class="col-sm-2 control-label">Pick date of Birth</label>
+                          <div class="col-sm-10">
+                            <input type="date" class="form-control" name="Date_of_Birth" placeholder="Date Of birth" value="{{old('Date_of_Birth')}}" required>
+                          </div>
+                    </div>
+
                     <div class="form-group">
                       <label for="" class="col-sm-2 control-label">Select Religion</label>
                       <div class="col-sm-10">
-                        <select class="form-control" id="select_religion">
+                        <select class="form-control" id="select_religion" name="religion">
                           <option value="Christian">Christian</option>
                           <option value="Hindu">Hindu</option>
                           <option value="Muslim">Muslim</option>
@@ -62,25 +78,57 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label>Primary/School Attended</label>
+                      <label for="">Primary/School Attended</label>
                       <div class="col-sm-10">
-                        <input type="text" name="school_attended" class="form-control" id="former_school" placeholder="Primary/School Attended">
+                        <input type="text" name="school_attended" class="form-control" id="former_school" placeholder="Primary/School Attended" value="{{old('school_attended')}}" required>
                       </div>
                     </div>
 
                       <div class="form-group">
                           <label>Number of Siblings</label>
                           <div class="col-sm-10">
-                              <input type="number" class="form-control m-2" name="boys" id="boys" placeholder="Number of Siblings" >
+                              <input type="number" class="form-control" name="siblings" id="siblings" placeholder="Number of Siblings" value="{{old('siblings')}}" required>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label>Emergency Contact Name</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="emergency_name" id="emergency_contact" placeholder="Name of Emergency Contact" value="{{old('emergency_name')}}" required>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label>Emergency Contact Phone</label>
+                          <div class="col-sm-10">
+                              <input type="number" class="form-control" name="emergency_phone" id="emergency_phone" placeholder="Phone of Emergency Contact" value="{{old('emergency_phone')}}" required>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label>Relationship of Student With Emergency Contact</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" name="emergency_relationship" id="emergency_relationship" placeholder="Relationship Between Student and Emergency Contact" value="{{old('emergency_relationship')}}" required>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label>Select a Class</label>
+                          <div class="col-sm-10">
+                              <select name="class_id" class="form-control">
+                                  @foreach($all_classes as $class)
+                                    <option value="{{$class->id}}">{{$class->class_name}}</option>
+                                  @endforeach
+                              </select>
                           </div>
                       </div>
 
                     <div class="form-group">
                       <label>Relevant medical information(Please indicate if he/she suffers from any disease)</label>
-                      <textarea class="form-control"name="medical_info" rows="5" ></textarea>
+                      <textarea class="form-control"name="medical_info" rows="5" required>{{old('medical_info')}}</textarea>
                     </div>
 
-                      <div class="form-group m-2">
+                      <div class="form-group">
                           <button  type="submit"  class="btn btn-primary mb-2">Submit Details</button>
                       </div>
                   </div>

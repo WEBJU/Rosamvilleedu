@@ -21,12 +21,17 @@ Route::get('/dashboard','DashboardController@index');
 Route::get('/addStudent','StudentsController@create');
 Route::get('/viewStudent','StudentsController@index');//show all students
 Route::get('/addparent/existing_parents/{id}','StudentsController@all_parents');//add existing parent
+Route::post('/registerStudent','StudentsController@store');//store new student information
+Route::get('/searchStudent','StudentsController@search');
+//Route::get('/searchStudent/','StudentsController@searchForm');
 
 // // route to add teachers to the databse
 Route::get('/addTeacher','TeachersController@create');
 
 // // route to add teachers to the databse
 Route::post('/addTeacher/store','TeachersController@store');
+// route to add class to the databse
+Route::get('/viewTeachers','TeachersController@index');
 // route to add class to the databse
 Route::post('/addClass/store','ClassController@store');
 //route to view class form
@@ -60,7 +65,7 @@ Route::get('/userDetails','UsersController@index');
 // Route::get();
 // Route::resource('fees','FeesController');
 // controller to display list of teachers
-Route::get('/viewTeachers','TeachersController@displayTeachers');
+// Route::get('/viewTeachers','TeachersController@displayTeachers');
 //route to get fee details
 Route::get('/feeDetails','FeesController@index');
 //get subject Details

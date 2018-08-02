@@ -36,12 +36,22 @@
 
           </thead>
           <tbody>
-          <tr>
-            <td>Dummmy Teacher</td>
-            <td>1212445</td>
-            <td>Class 3</td>
-            <td><a href="#" class="btn btn-danger m-2">Delete</a><a href="#" class="btn btn-info">Edit</a></td>
-
-          </tr>
+              @if(count($teacher) > 0)
+              @foreach($teacher as $teach)
+                @if(count($users) > 0)
+                  @foreach($users as $user)
+                    @if($teach->user_id == $user->id)
+                      <tr>
+                        <td>{{$user->sur_name}} {{$user->first_name}} {{$user->last_name}}</td>
+                        <td>{{$teach->teacher_tsc_no}}</td>
+                        <td>Class 3</td>
+                        <td><a href="#" class="btn btn-danger m-2">Delete</a><a href="#" class="btn btn-info">Edit</a></td>
+                     </tr>                      
+                    @endif
+                  @endforeach
+                @endif
+              @endforeach
+            @endif
+          
         </tbody>
   @endsection

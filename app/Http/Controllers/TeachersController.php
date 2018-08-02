@@ -15,6 +15,13 @@ class TeachersController extends Controller
      */
     public function index()
     {
+        // //getting all teachers from the database
+         $teacher = Teachers::all();
+        // // getting all users from the database
+        $users = Users::all();
+
+        // return view('admin.pages.teacher.view_teacher', compact('user'))->with('teacher', $teacher);
+        return view('admin.pages.teacher.view_teacher',compact('users'))->with('teacher', $teacher);
 
     }
     /**
