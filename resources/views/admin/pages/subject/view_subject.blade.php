@@ -38,8 +38,8 @@
 
           </thead>
           <tbody>
-            @if(count($sbjs) > 0)
-              @foreach($sbjs as $sbj)
+            @if(count($subjects) > 0)
+              @foreach($subjects as $sbj)
               <tr>
                   <td>{{$sbj->id}}</td>
                   <td>{{$sbj->subject_name}}</td>

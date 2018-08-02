@@ -16,8 +16,8 @@ class SubjectsController extends Controller
     {
         $subjects=Subject::All();
         return view('admin.pages.subject.view_subject')->with('subjects',$subjects);
-        $sbjs = Subject::all();
-        return view('admin.pages.subject.view_subject')->with('sbjs', $sbjs);
+        // $sbjs = Subject::all();
+        // return view('admin.pages.subject.view_subject')->with('sbjs', $sbjs);
     }
 
     /**
