@@ -8,6 +8,6 @@ class classess extends Model
 {
   //class relates to teachers
   public function teachers(){
-
+  
   }
 }
