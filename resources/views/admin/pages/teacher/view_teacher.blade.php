@@ -49,7 +49,13 @@
                             <form action="/viewTeachers/destroy" method="POST">
                               @csrf
                               <input type="hidden" value="{{$teach->user_id}}" name="delete_teacher">
-                              <button  class="btn btn-danger m-2">Delete</button>
+                              <button  class="btn btn-danger m-2">Delete</button>                              
+                          </form> 
+                        </td>
+                        <td>
+                            <form>
+                              @csrf
+                              <input type="hidden" value="{{$teach->user_id}}" name="delete_teacher">                              
                               <button class="btn btn-info">Edit</button>
                           </form> 
                         </td>

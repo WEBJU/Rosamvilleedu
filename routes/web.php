@@ -42,7 +42,14 @@ Route::get('/addClass','ClassController@create');
 Route::post('/addSubject/store','SubjectsController@store');
 //route to view subjects page
 Route::get('/addSubject','SubjectsController@create');
+//route to store
+Route::post('/addSubject/edit','SubjectsController@edit');
+//route to delete subject
+Route::post('/viewSubjectDetails/destroy','SubjectsController@destroy');
+// route to add subject to the databse
 Route::get('/saveSubject','SubjectsController@store');
+//
+// Route::get('/viewSubjectDetails/edit', '');
 // route to add Exam to the databse
 Route::get('/addExam','ExamsController@create');
 Route::get('/viewExamDetails','ExamsController@index');
