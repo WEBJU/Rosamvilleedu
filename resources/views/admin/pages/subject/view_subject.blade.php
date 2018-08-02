@@ -35,31 +35,20 @@
             <th>Subject Name</th>
             <th>Action</th>
           </tr>
-
           </thead>
           <tbody>
-            @if(count($subjects) > 0)
-              @foreach($subjects as $sbj)
-              <tr>
-                  <td>{{$sbj->id}}</td>
-                  <td>{{$sbj->subject_name}}</td>
-                  <td><a href="/addSubject/delete" class="btn btn-danger m-2">Delete</a><a href="/addSubject/update" class="btn btn-info">Edit</a></td>
 
-                </tr>
-              @endforeach
-            @endif
+                        {{-- check if subject is greater than 1 --}}
+                          @if(count($subjects) > 0)
+                            {{-- loop through the subjects --}}
+                          @foreach ($subjects as $subject)
+                      <tr>
+                        <td>{{$subject->id}}</td>
+                        <td>{{$subject->subject_name}}</td>
+                        <td><a href="/deleteSubject/delete/{{$subject->id}}" class="btn btn-danger mr-1">Delete</a><a href="/editSubject/edit/{{$subject->id}}" class="btn btn-info">Edit</a></td>
+                      </tr>
+          </tbody>
 
-        </tbody>
-        </table>
-            {{-- check if subject is greater than 1 --}}
-              @if(count($subjects) > 1)
-                {{-- loop through the subjects --}}
-              @foreach ($subjects as $subject)
-          <tr>
-            <td>{{$subject->id}}</td>
-            <td>{{$subject->subject_name}}</td>
-            <td><a href="/deleteSubject/delete/{{$subject->id}}" class="btn btn-danger mr-1">Delete</a><a href="/editSubject/edit/{{$subject->id}}" class="btn btn-info">Edit</a></td>
-          </tr>
         </tbody>
           @endforeach
           @endif

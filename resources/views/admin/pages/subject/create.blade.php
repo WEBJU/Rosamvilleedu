@@ -16,8 +16,6 @@
       </div><!-- /.container-fluid -->
     </div>
         <h1 style="margin-left:20px;">Add Subject</h1>
-            <form class="form-horizontal" action="/addSubject/store" enctype="multipart/form-data" method="POST">
-              @csrf
             <form class="form-horizontal" action="/saveSubject" enctype="multipart/form-data">
 
                   <div class="card-body">
