@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
 
+    protected $table = "students";
+    /*
     protected $fillable=[
       'surname',
       'middle_name',
@@ -23,6 +25,7 @@ class Student extends Model
     public function parents(){
       return $this->belongsToOne(Parent::class);
     }
+    */
     public function fees(){
       return $this->hasOne(Fees::class);
     }

@@ -23,6 +23,8 @@ Route::get('/viewStudent','StudentsController@index');//show all students
 Route::get('/addparent/existing_parents/{id}','StudentsController@all_parents');//add existing parent
 Route::post('/registerStudent','StudentsController@store');//store new student information
 Route::get('/searchStudent','StudentsController@search');
+Route::post('/student/delete','StudentsController@destroy');
+Route::post('/updateStudent','StudentsController@update');
 //Route::get('/searchStudent/','StudentsController@searchForm');
 
 // // route to add teachers to the databse
