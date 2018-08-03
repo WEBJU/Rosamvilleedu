@@ -36,6 +36,8 @@ Route::get('/viewTeachers','TeachersController@index');
 Route::post('/viewTeachers/destroy','TeachersController@destroy');
 // route to add class to the databse
 Route::post('/addClass/store','ClassController@store');
+//displays class details
+Route::get('/viewClass','ClassController@index');
 //route to view class form
 Route::get('/addClass','ClassController@create');
 // route to add subject to the databse
@@ -51,9 +53,9 @@ Route::get('/saveSubject','SubjectsController@store');
 //
 // Route::get('/viewSubjectDetails/edit', '');
 // route to add Exam to the databse
-Route::get('/addExam','ExamsController@create');
-Route::get('/viewExamDetails','ExamsController@index');
-Route::get('/saveExam','ExamsController@store');
+Route::get('/addExam','ExamsController@create');//show form for creating exam
+Route::get('/viewExamDetails','ExamsController@index');//displays exams
+Route::get('/saveExam','ExamsController@store');//store exam
 // route to add Exam Results to the databse
 Route::get('/addResults','ExamsController@addResult');
 // route to add fees details to the databse

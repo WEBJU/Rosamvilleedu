@@ -253,7 +253,7 @@
                           </div>
                   </div>
 
-                  <!-- /.card-footer -->
+                
 
                 </form>
   @endsection

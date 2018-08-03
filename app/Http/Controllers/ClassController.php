@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 use App\Teachers;
 use App\Users;
+use App\classess;
 use Illuminate\Http\Request;
-use App\Classes;
+
 
 class ClassController extends Controller
 {
@@ -15,7 +16,8 @@ class ClassController extends Controller
      */
     public function index()
     {
-        //
+      $classess=classess::all();
+      return view('admin.pages.class.view_class')->with('classess',$classess);
     }
 
     /**
@@ -25,22 +27,8 @@ class ClassController extends Controller
      */
     public function create()
     {
-       // $teachers=DB::table('teachers')->pluck('user_id');
-       // $user=User::All();
-       // $teacher->teacher_name=$user->id;
-        // $teachers = Teachers::all();
-        // foreach($teachers as $teacher) {
-        //     $user=Users::all();
-        //     if ($user->id==$teacher->user_id){
-        //
-        //       $teacher_firstname=$user->first_name;
-        //       $teacher_lastname=$user->last_name;
-        //     }
-        //     // $teacher_name =
-        //     // $teachers[]
-        // }
-        // return view('admin.pages.class.create',['first_name'=>$teacher_firstname,'lastname'=>$teacher_lastname]);
-        return view('admin.pages.class.create');
+        $teachers=Teachers::all();
+        return view('admin.pages.class.create')->with('teachers',$teachers);
     }
 
     /**
@@ -51,7 +39,22 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-
+      // validate entries
+        $request->validate([
+          'class_name'=>'required',
+          'class_capacity'=>'required',
+          'class_teacher'=>'required',
+          // 'class_year'=>'required'
+        ]);
+        // save Record
+        $classess=new classess;
+        $classess->class_name=$request->input('class_name');
+        $classess->class_capacity=$request->input('class_capacity');
+        $classess->class_prefect_id=$request->input('class_prefect');
+        $classess->class_teacher_id=$request->input('class_teacher');
+        // $classess->class_year=$request->input('class_year');
+        $classess->save();
+        return back()->with('success','New Class added successfully');
     }
 
     /**

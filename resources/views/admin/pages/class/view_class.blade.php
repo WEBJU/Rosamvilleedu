@@ -29,23 +29,29 @@
         <table  class="table table-bordered table-striped">
           <thead>
           <tr>
-            <th>Class Type</th>
-            <th>Description</th>
-            <th>Amount</th>
-            <th>Date Spend</th>
+            <th>Class Name</th>
+            <th>Capacity</th>
+            <th>Class Prefect</th>
+            <th>Class Teacher</th>
+            <th>Class Year</th>
             <th>Action</th>
           </tr>
 
           </thead>
           <tbody>
-            @if (count($Classs)>0)
-              @foreach ($Classs as $Class)
+            @if(count($classess)>0)
+              @foreach ($classess as $class)
           <tr>
-            <td>{{}}</td>
-            <td>{{}}</td>
-            <td>Kshs.{{}}</td>
-            <td>{{}}</td>
-            <td><a href="#" class="btn btn-info">Edit</a><a href="#" class="btn btn-danger m-2">Delete</a><a href="#" class="btn btn-secondary">Print Details</a></td>
+            <td>{{$class->class_name}}</td>
+            <td>{{$class->class_capacity}}</td>
+            <td>{{$class->class_prefect}}</td>
+            <td>{{$class->class_teacher_id}}</td>
+            <td>{{$class->class_year}}</td>
+
+            <td>
+              <a href="#" class="btn btn-info">Edit</a>
+              <a href="#" class="btn btn-danger m-2">Delete</a>
+              <a href="#" class="btn btn-secondary">Print Details</a></td>
 
           </tr>
               @endforeach
