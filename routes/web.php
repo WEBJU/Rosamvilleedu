@@ -44,7 +44,7 @@ Route::get('/viewClass','ClassController@index');
 // Route::get('/classes/edit','ClassController@edit');
 
 //print class Details
-Route::get('');
+
 //route to view class form
 Route::get('/addClass','ClassController@create');
 // route to add subject to the databse
