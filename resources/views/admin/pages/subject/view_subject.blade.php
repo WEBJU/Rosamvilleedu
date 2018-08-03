@@ -45,7 +45,20 @@
                       <tr>
                         <td>{{$subject->id}}</td>
                         <td>{{$subject->subject_name}}</td>
-                        <td><a href="/deleteSubject/delete/{{$subject->id}}" class="btn btn-danger mr-1">Delete</a><a href="/editSubject/edit/{{$subject->id}}" class="btn btn-info">Edit</a></td>
+                        <td>
+                          <form action="/viewSubjectDetails/destroy" method="POST">
+                            @csrf
+                            <input type="hidden" name="delete_subject" value="{{$subject->id}}">
+                            <button class="btn btn-danger mr-1">Delete</button>                           
+                          </form>
+                        </td>
+                        <td>
+                          <form action="#" method="#">
+                            @csrf
+                            <input type="hidden" name="edit_subject" value="{{$subject->id}}">
+                            <button class="btn btn-info">Edit</button>                         
+                          </form>
+                        </td>                                                   
                       </tr>
           </tbody>
 

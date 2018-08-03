@@ -66,10 +66,12 @@ class SubjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $subject=Subject::find($id);
-        return view('admin.pages.subject.edit');
+        // $subject_id = $request->input('edit_subject');
+        // $subject = Subject::where('id', $subject_id);
+        
+        // return view('admin.pages.subject.edit_subject')->with('subject', $subject);
     }
 
     /**
@@ -90,8 +92,13 @@ class SubjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $subject_id = $request->input('delete_subject');
+        $subject = Subject::where('id', $subject_id);
+        $subject->delete();
+
+        return redirect('/viewSubjectDetails')->with('success', 'Details deleted Successfully');
+        
     }
 }
