@@ -50,11 +50,12 @@
 
             <td>
               <a href="#" class="btn btn-info">Edit</a>
-              <a href="#" class="btn btn-danger m-2">Delete</a>
+              <a href="{{ route('delete-class',['class_id',$class->id])}}" class="btn btn-danger m-2">Delete</a>
               <a href="#" class="btn btn-secondary">Print Details</a></td>
 
           </tr>
               @endforeach
             @endif
         </tbody>
+
   @endsection

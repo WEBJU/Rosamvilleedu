@@ -40,6 +40,11 @@ Route::post('/viewTeachers/destroy','TeachersController@destroy');
 Route::post('/addClass/store','ClassController@store');
 //displays class details
 Route::get('/viewClass','ClassController@index');
+//route to edit class
+// Route::get('/classes/edit','ClassController@edit');
+
+//print class Details
+Route::get('');
 //route to view class form
 Route::get('/addClass','ClassController@create');
 // route to add subject to the databse
@@ -85,3 +90,5 @@ Route::get('/feeDetails','FeesController@index');
 Route::get('/viewSubjectDetails','SubjectsController@index');
 //Route to display expenditures
 Route::get('/expenditureDetails','ExpendituresController@index');
+//route to delete
+Route::get('delete/{class_id}',['uses'=>'ClassController@delete','as'=>'delete-class']);

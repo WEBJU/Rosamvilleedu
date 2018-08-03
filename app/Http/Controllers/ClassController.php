@@ -97,8 +97,15 @@ class ClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    // public function destroy($id)
+    // {
+    //     classess::destroy($id);
+    //     return redirect()->back()->with('success','Class deleted successfully');
+    // }
+    public function delete($id)
     {
-        //
+        $classess=classess::findOrFail($id);
+        $classess->delete();
+        return redirect()->back()->with('success','Class deleted successfully');
     }
 }
