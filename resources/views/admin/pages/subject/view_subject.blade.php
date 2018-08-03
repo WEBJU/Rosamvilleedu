@@ -33,7 +33,8 @@
           <tr>
             <th>Subject id</th>
             <th>Subject Name</th>
-            <th>Action</th>
+            <th>Delete</th>
+            <th>Edit</th>
           </tr>
           </thead>
           <tbody>
@@ -49,16 +50,16 @@
                           <form action="/viewSubjectDetails/destroy" method="POST">
                             @csrf
                             <input type="hidden" name="delete_subject" value="{{$subject->id}}">
-                            <button class="btn btn-danger mr-1">Delete</button>                           
+                            <button class="btn btn-danger mr-1">Delete</button>
                           </form>
                         </td>
                         <td>
                           <form action="#" method="#">
                             @csrf
                             <input type="hidden" name="edit_subject" value="{{$subject->id}}">
-                            <button class="btn btn-info">Edit</button>                         
+                            <button class="btn btn-info">Edit</button>
                           </form>
-                        </td>                                                   
+                        </td>
                       </tr>
           </tbody>
 
