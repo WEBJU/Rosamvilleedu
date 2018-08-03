@@ -51,15 +51,15 @@ class TeachersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'surname'=>'required',
-            'first_name'=>'required',
-            'other_name'=>'required',
-            'national_id'=>'required',
-            'tsc_number'=>'required',
-            'experience'=>'required',
+            'surname'=>'required|string|min:2',
+            'first_name'=>'required|string|min:2',
+            'other_name'=>'required|string|min:2',
+            'national_id'=>'required|integer',
+            'tsc_number'=>'required|integer',
+            'experience'=>'required|string|min:4',
             'subjects_taught'=>'required',
             'email_address'=>'required|email',
-            'phone_number'=>'required',
+            'phone_number'=>'required|string|regex:/(07)[0-9]{8}/',
             'password'=>'required',
         ]);
 

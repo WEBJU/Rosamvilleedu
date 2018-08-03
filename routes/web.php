@@ -87,6 +87,8 @@ Route::get('/userDetails','UsersController@index');
 //route to get fee details
 Route::get('/feeDetails','FeesController@index');
 //get subject Details
+Route::post('/feeDetails/destroy','FeesController@destroy');
+//get subject Details
 Route::get('/viewSubjectDetails','SubjectsController@index');
 //Route to display expenditures
 Route::get('/expenditureDetails','ExpendituresController@index');
