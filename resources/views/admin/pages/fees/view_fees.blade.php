@@ -48,7 +48,36 @@
                   @foreach($all_students as $students)
                     @if(count($all_classes) > 0)
                       @foreach($all_classes as $classes)
-                      
+                        @if($fees->student_id == $students->id)
+                          <tr>
+                              <td>{{$students->student_surname}} {{$students->student_firstname}} {{$students->student_other_name}}</td>
+                              <td>{{$classes->class_name}}</td>
+                              <td>{{$fees->amount_paid}}</td>
+                              <td>{{$fees->date_paid}}</td>
+                              <td>{{$fees->balance}}</td>
+                              <td>
+                              <form action="/feeDetails/destroy" method="POST">
+                                @csrf
+                                <input type="hidden" name="delete_fees" value="{{$fees->id}}">
+                                <button class="btn btn-danger m-1">DELETE</button>
+                              </form>
+                              </td>
+                              <td>
+                              <form>
+                                @csrf
+                                <input type="hidden" name="edit_fees" value="{{$fees->id}}">
+                                <button class="btn btn-info">EDIT</button>
+                              </form>
+                              </td>
+                              <td>
+                              <form>
+                                @csrf
+                                <input type="hidden" name="print_fees">
+                                <button class="btn btn-secondary m-1">Print Receipt</button>
+                              </form>
+                              </td>                             
+                          </tr>
+                        @endif
                       @endforeach                    
                     @endif
                   @endforeach                
@@ -56,12 +85,7 @@
               @endforeach
             @endif
           <tr>
-            <td>Dummmy Fees</td>
-            <td>Grade 1s</td>
-            <td>200</td>
-            <td>12/3/4500</td>
-            <td>Ksh.2000</td>
-            <td><a href="#" class="btn btn-danger m-1">Delete</a><a href="#" class="btn btn-info">Edit</a><a href="#" class="btn btn-secondary m-1">Print Receipt</a></td>
+            
 
           </tr>
         </tbody>

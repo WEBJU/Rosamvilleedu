@@ -108,8 +108,13 @@ class FeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $fee_id = $request->input('delete_fees');
+        $fee = Fees::where('id', $fee_id);
+        $fee->delete();
+
+        return redirect('/feeDetails')->with('success', 'Fees Delate Successfully');
     }
 }
