@@ -16,7 +16,7 @@ class TeachersController extends Controller
     public function index()
     {
         // //getting all teachers from the database
-         $teacher = Teachers::all();
+        $teacher = Teachers::all();
         // // getting all users from the database
         $users = Users::all();
 
@@ -58,7 +58,7 @@ class TeachersController extends Controller
             'tsc_number'=>'required',
             'experience'=>'required',
             'subjects_taught'=>'required',
-            'email_address'=>'required',
+            'email_address'=>'required|email',
             'phone_number'=>'required',
             'password'=>'required',
         ]);
@@ -81,9 +81,8 @@ class TeachersController extends Controller
         $teacher->teacher_tsc_no = $request->input('tsc_number');
         $teacher->subject_specialized = $request->input('subjects_taught');
         $teacher->save();
-
         return redirect('/addTeacher')->with('success','Subject created successfully');
-        
+
     }
 
     /**

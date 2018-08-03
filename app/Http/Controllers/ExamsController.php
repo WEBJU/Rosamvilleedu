@@ -79,7 +79,8 @@ class ExamsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $exam=Exam::find($id);
+        return view('admin.pages.exam.edit_exam')->with('exam',$exam);
     }
 
     /**

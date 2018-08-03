@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Teachers;
+use App\Users;
 use Illuminate\Http\Request;
 use App\Classes;
 
@@ -24,6 +25,21 @@ class ClassController extends Controller
      */
     public function create()
     {
+       // $teachers=DB::table('teachers')->pluck('user_id');
+       // $user=User::All();
+       // $teacher->teacher_name=$user->id;
+        // $teachers = Teachers::all();
+        // foreach($teachers as $teacher) {
+        //     $user=Users::all();
+        //     if ($user->id==$teacher->user_id){
+        //
+        //       $teacher_firstname=$user->first_name;
+        //       $teacher_lastname=$user->last_name;
+        //     }
+        //     // $teacher_name =
+        //     // $teachers[]
+        // }
+        // return view('admin.pages.class.create',['first_name'=>$teacher_firstname,'lastname'=>$teacher_lastname]);
         return view('admin.pages.class.create');
     }
 
@@ -35,7 +51,7 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**

@@ -39,9 +39,13 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="other_name" class="col-sm-2 control-label">Class Teacher</label>
+                      <label for="" class="col-sm-2 control-label">Class Teacher</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="class_teacher" placeholder="Class Teacher">
+                        <select name="class_teacher"class="form-control" >
+                          <option>Mid Term</option>
+                          <option>End Term</option>
+                          <option>Special Exam</option>
+                        </select>
                       </div>
                     </div>
                           <div class="form-group m-2">

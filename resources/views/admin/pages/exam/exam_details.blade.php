@@ -45,7 +45,7 @@
             <td>{{$exam->exam_start_date}}</td>
             <td>{{$exam->exam_end_date}}</td>
             <td>{{$exam->exam_release_date}}</td>
-            <td><a href="#" class="btn btn-danger m-1">Delete</a><a href="#" class="btn btn-info">Edit</a><a href="#" class="btn btn-secondary m-1">Print Receipt</a></td>
+            <td><a href="#" class="btn btn-danger m-1">Delete</a><a href="/exams/{{$exam->id}}/edit" class="btn btn-info">Edit</a><a href="#" class="btn btn-secondary m-1">Print Details</a></td>
           </tr>
             @endforeach
             @endif
