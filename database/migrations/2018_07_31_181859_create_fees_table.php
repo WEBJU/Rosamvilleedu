@@ -17,7 +17,7 @@ class CreateFeesTable extends Migration
             $table->increments('id');//fees_id
             $table->integer('student_id');//foreign key to student.id
             $table->integer('class_id');//foreign key to class.id
-            $table->integer('term_paid_for');//
+            $table->string('term_paid_for');//
             $table->date('date_paid');//date fees was paid
             $table->integer('amount_to_be_paid');
             $table->integer('amount_paid');

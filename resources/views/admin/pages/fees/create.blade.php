@@ -21,21 +21,35 @@
                   <div class="card-body">
                     <h3>Fee Payment Details</h3>
                     <div class="form-group">
-                      <label for="surname" class="col-sm-2 control-label">Student ID</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="student_id"class="form-control" id="student_id" placeholder="Student ID">
-                      </div>
+                        <label for="surname" class="col-sm-2 control-label">Student ID</label>
+                        <div class="col-sm-10">
+                            <select name="student_id" class="form-control">
+                                @foreach($all_students as $student)
+                                  <option value="{{$student->id}}">{{$student->id}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>                                       
+                    <div class="form-group">
+                        <label>Select a Class</label>
+                        <div class="col-sm-10">
+                            <select name="class_id" class="form-control">
+                                @foreach($all_classes as $class)
+                                  <option value="{{$class->id}}">{{$class->class_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
-                      <label for="" class="col-sm-2 control-label">Term</label>
-                      <div class="col-sm-10">
-                        <select class="form-control" id="select_religion" name="school_terms">
-                          <option value="first_term">First Term</option>
-                          <option value="second_term">Second Term</option>
-                          <option value="third_term">Third Term</option>
-                        </select>
+                        <label for="surname" class="col-sm-2 control-label">School Term</label>
+                        <div class="col-sm-10">
+                          <select name="school_term" class="form-control">
+                            <option value="term_one">Term One</option>
+                            <option value="term_two">Term Two</option>
+                            <option value="term_three">Term Three</option>
+                          </select>
+                        </div>
                       </div>
-                    </div>
                     <div class="form-group">
                       <label for="surname" class="col-sm-2 control-label">Total Fees </label>
                       <div class="col-sm-10">
@@ -48,21 +62,11 @@
                         <input type="text" name="amount_paid"class="form-control" id="amount_paid" placeholder="Amount Paid">
                       </div>
                     </div>
+                    
                     <div class="form-group">
-                      <label for="surname" class="col-sm-2 control-label">Class ID</label>
-                      <div class="col-sm-10">
-                        <input type="text" name="class_id"class="form-control" id="class_id" placeholder="Class ID">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="other_name" class="col-sm-2 control-label">Payment Date</label>
-                          <div class="input-group date" data-provide="datepicker">
+                        <label for="other_name" class="col-sm-2 control-label">Payment Date</label>                          
                             <div class="col-sm-10">
-                              <input type="text" class="form-control" name="date_of_payment">
-                            </div>
-                            <span class="input-group-addon">
-                                <span class="fa fa-calender"></span>
-                            </span>
+                              <input type="date" class="form-control" name="date_of_payment">                                                      
                         </div>
                     </div>
                     <div class="form-group">

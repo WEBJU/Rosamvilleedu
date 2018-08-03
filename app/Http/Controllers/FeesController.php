@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Fees;
+use App\Student;
+use App\classess;
+
 class FeesController extends Controller
 {
     /**
@@ -13,7 +16,11 @@ class FeesController extends Controller
      */
     public function index()
     {
-      return view('admin.pages.fees.view_fees');
+        $all_classes = classess::all();
+        $all_students = Student::all();
+        $all_fees = Fees::all();
+
+        return view('admin.pages.fees.view_fees', compact('all_classes'))->with('all_students',$all_students)->with('all_fees', $all_fees);
     }
 
     /**
@@ -23,7 +30,9 @@ class FeesController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.fees.create');
+        $all_classes = classess::all();
+        $all_students = Student::all();
+        return view('admin.pages.fees.create', compact('all_students'))->with('all_classes', $all_classes);
     }
 
     /**
@@ -37,7 +46,7 @@ class FeesController extends Controller
        
         $this->validate($request,[
             'student_id'=>'required',
-            'school_terms'=>'required',
+            'school_term'=>'required',
             'total_fees'=>'required',
             'amount_paid'=>'required',
             'class_id'=>'required',
@@ -46,16 +55,16 @@ class FeesController extends Controller
         ]);
 
         $fee = new Fees;
-        $fee->student_id = $request->input('student_id');
-        $fee->student_id = $request->input('school_terms');
-        $fee->amount_to_be_paid = $request->input('total_fees');
-        $fee->amount_id = $request->input('amount_paid');
+        $fee->student_id = $request->input('student_id'); 
         $fee->class_id = $request->input('class_id');
+        $fee->term_paid_for = $request->input('school_term');     
+        $fee->amount_to_be_paid = $request->input('total_fees');
+        $fee->amount_paid = $request->input('amount_paid');       
         $fee->date_paid = $request->input('date_of_payment');
-        $fee->balancee = $request->input('fee_balance');
+        $fee->balance = $request->input('fee_balance');
         $fee->save();
 
-        return view();
+        return redirect('/addFees')->with('success', 'Fees Paid successfully');
         
     }
 

@@ -42,6 +42,19 @@
 
           </thead>
           <tbody>
+            @if(count($all_fees) > 0)
+              @foreach($all_fees as $fees)
+                @if(count($all_students) > 0)
+                  @foreach($all_students as $students)
+                    @if(count($all_classes) > 0)
+                      @foreach($all_classes as $classes)
+                      
+                      @endforeach                    
+                    @endif
+                  @endforeach                
+                @endif
+              @endforeach
+            @endif
           <tr>
             <td>Dummmy Fees</td>
             <td>Grade 1s</td>
