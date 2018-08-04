@@ -11,8 +11,7 @@
               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
               <li class="breadcrumb-item active">Fees</li>
             </ol>
-            <a href="/addUser" class="btn btn-default">Go Back</a>
-            <br>
+            
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -63,11 +62,11 @@
                               </form>
                               </td>
                               <td>
-                              <form>
-                                @csrf
-                                <input type="hidden" name="edit_fees" value="{{$fees->id}}">
-                                <button class="btn btn-info">EDIT</button>
-                              </form>
+                                <button 
+                                  class="btn btn-info"
+                                  type="button"                                 
+                                  data-toggle="modal" 
+                                  data-target="#editFeeModal">Edit</button>                              
                               </td>
                               <td>
                               <form>
@@ -83,10 +82,83 @@
                   @endforeach                
                 @endif
               @endforeach
-            @endif
-          <tr>
-            
-
-          </tr>
+            @endif          
         </tbody>
+        </table>
+        <!--Edit modal-->
+        <div class="modal modal fade" id="editFeeModal" role="dialog">
+            <div class="modal-dialog">
+                <!--Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>Edit Fee</h1>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>    
+                    <div class="modal-body">
+                    <form class="form-horizontal" action="/feeDetails/update" method="POST">
+                        @csrf
+                        <div class="card-body">
+                            <p class="text-info">Fees Information</p>
+                            <input type="hidden" name="teacher_id" id="teacher_id" value="">
+                            <div class="form-group">                                
+                                <label for="surname" class="col-sm-2 control-label">Surname</label>
+                                <div class="col-sm-10">                                    
+                                    <input type="text" name="student_surname" class="form-control" id="student_surname">
+                                </div>
+                            </div>
+                            <div class="form-group">                                
+                                <label for="first_name" class="col-sm-2 control-label">First Name</label>
+                                <div class="col-sm-10">                                    
+                                    <input type="text" name="student_fname" class="form-control" id="student_fname">
+                                </div>
+                            </div>
+                            <div class="form-group">                                
+                                <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+                                <div class="col-sm-10">                                    
+                                    <input type="text" name="student_lname" class="form-control" id="student_lname">
+                                </div>
+                            </div>
+                            <div class="form-group">                                
+                                <label for="student_class" class="col-sm-2 control-label">Class</label>
+                                <div class="col-sm-10">                                    
+                                    <input type="text" name="student_class" class="form-control" id="student_class">
+                                </div>
+                            </div> 
+                            <div class="form-group">                                
+                                <label for="amount_paid" class="col-sm-2 control-label">Amount Paid</label>
+                                <div class="col-sm-10">                                    
+                                    <input type="text" name="amount_paid" class="form-control" id="amount_paid">
+                                </div>
+                            </div>
+                            <div class="form-group">                                
+                                <label for="date_paid" class="col-sm-2 control-label">Date of Payment</label>
+                                <div class="col-sm-10">                                    
+                                    <input type="date" name="date_paid" class="form-control" id="date_paid">
+                                </div>
+                            </div>
+                            <div class="form-group">                                
+                                <label for="balance" class="col-sm-2 control-label">Balance</label>
+                                <div class="col-sm-10">                                    
+                                    <input type="text" name="balance" class="form-control" id="balance">
+                                </div>
+                            </div>                            
+                                                                                   
+                        </div>             
+    
+                    <div class="modal-footer">                                                    
+                            {{-- <input type="hidden" value="$subject->id" id="subject_id" name="subject_id"> --}}
+                            <button type="submit" class="btn btn-danger">Save Changes</button>                          
+                        </form>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!--jquery-->
+    <script>
+      $('#editTeacherModal').on('show.bs.modal', function(event){
+
+       
+      })
+     
   @endsection

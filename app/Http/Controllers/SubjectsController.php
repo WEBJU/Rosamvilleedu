@@ -83,7 +83,19 @@ class SubjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'subject_name'=>'required',
+        ]);
+        
+        $id = $request->input('subject_id');
+        $subject = Subject::find($id);
+        $subject->subject_name = $request->input('subject_name');
+        $subject->save();
+        // return ['id'=>$subject->id, 'name'=> $subject->subject_name];      
+        
+              
+
+        return redirect('/viewSubjectDetails')->with('success', 'Subject Updated Successfully');
     }
 
     /**

@@ -13,4 +13,8 @@ class Teachers extends Model
     public function users(){
       return $this->hasOne(Users::class);
     }
+
+    public function classess(){
+      return $this->hasOne(Teachers::class);
+    }
 }
