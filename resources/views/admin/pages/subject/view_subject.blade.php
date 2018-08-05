@@ -60,8 +60,7 @@
                   data-subject_id="{{$subject->id}}" 
                   data-subject_name="{{$subject->subject_name}}" 
                   data-toggle="modal" 
-                  data-target="#editSubjectModal">Edit</button>
-              
+                  data-target="#editSubjectModal">Edit</button>              
             </td>
           </tr>
           </tbody>

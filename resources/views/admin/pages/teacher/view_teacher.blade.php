@@ -37,20 +37,25 @@
           </thead>
           <tbody>
               @if(count($teacher) > 0)
-              @foreach($teacher as $teach)
-                @if(count($users) > 0)
-                  @foreach($users as $user)
-                    @if($teach->user_id == $user->id)
-                      <tr>
-                        <td>{{$user->sur_name}} {{$user->first_name}} {{$user->last_name}}</td>
-                        <td>{{$teach->teacher_tsc_no}}</td>
-                        @if(count($classes) > 0)
-                          @foreach($classes as $clases)
-                            @if($clases->class_teacher_id == $teach->user_id)
-                            <td>{{$clases->class_name}}</td>
-                            @endif
-                          @endforeach
-                        @endif
+                @foreach($teacher as $teach)
+                  @if(count($users) > 0)
+                    @foreach($users as $user)
+                      @if($teach->user_id == $user->id)
+                        <tr>
+                          <td>{{$user->sur_name}} {{$user->first_name}} {{$user->last_name}}</td>
+                          <td>{{$teach->teacher_tsc_no}}</td>
+                          @if(count($classes) > 0)
+                            @foreach($classes as $clases)
+                              @if($clases->class_teacher_id == $teach->user_id)
+                              <td>{{$clases->class_name}}</td>
+                              @endif
+                            @endforeach
+              @else
+              {{-- if the no teacher exists in the database  --}}
+
+              @endif
+                        
+                        
                         
                         <td>
                             <form action="/viewTeachers/destroy" method="POST">

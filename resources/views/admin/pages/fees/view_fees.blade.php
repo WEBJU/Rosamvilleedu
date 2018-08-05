@@ -65,7 +65,7 @@
                                 <button 
                                   class="btn btn-info"
                                   type="button"
-                                  data-id="{{$fees->id}}"
+                                  data-fees_id="{{$fees->id}}"
                                   data-student_surname = "{{$students->student_surname}}"
                                   data-student_fname="{{$students->student_firstname}}" 
                                   data-student_lname="{{$students->student_other_name}}"

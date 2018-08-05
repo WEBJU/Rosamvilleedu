@@ -112,25 +112,30 @@ class FeesController extends Controller
         
         $id = $request->input('fees_id');
         $fee = Fees::find($id);
-        $student = Student::find($id);
-        $clas = classess::find($id);
-        return ['id'=>$id];
-        // if($student->id == $fee->student_id){
-        //     $student->student_surname = $request->input('student_surname');
-        //     $student->student_firstname = $request->input('student_fname');
-        //     $student->student_other_name = $request->input('student_lname');
-        //     $student->save();           
+        $student_id = $fee->student_id;
+        $student = Student::find($student_id);
+        $class_id = $fee->class_id;
+        $clas = classess::find($class_id);
 
-        //     $fee->amount_paid = $request->input('amount_paid');
-        //     $fee->date_paid = $request->input('date_paid');
-        //     $fee->balance = $request->input('balance');
-        //     $fee->save();
+        // return ['id'=>$id, 'student_id'=>$fee->student_id, 'class'=>$clas->id];
+        
+        if($student->id == $fee->student_id && $clas->id == $student->class_id){
+            
+            $student->student_surname = $request->input('student_surname');
+            $student->student_firstname = $request->input('student_fname');
+            $student->student_other_name = $request->input('student_lname');
+            $student->save();           
 
-        //     if($student->class_id == $clas->id){
-        //         $clas->class_name = $request->input('student_class');
-        //         $clas->save();
-        //     }
-        // }
+            $fee->amount_paid = $request->input('amount_paid');
+            $fee->date_paid = $request->input('date_paid');
+            $fee->balance = $request->input('balance');
+            $fee->save();
+
+            
+            $clas->class_name = $request->input('student_class');
+            $clas->save();
+            
+        }
 
         return redirect('/feeDetails')->with('success', 'Fees Updated Successfully');
     }

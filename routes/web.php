@@ -66,7 +66,7 @@ Route::get('/saveSubject','SubjectsController@store');
 // route to add Exam to the databse
  // Route::get('/addExam','ExamsController@create');//show form for creating exam
 // Route::get('/viewExamDetails','ExamsController@index');//displays exams
-  Route::post('/saveExam','ExamsController@store');//store exam
+Route::post('/saveExam','ExamsController@store');//store exam
 // Route::get('/edit/{$id}',[
 //   'uses'=>'ExamsController@edit'
 // ]);
@@ -98,6 +98,8 @@ Route::get('/addUser','UsersController@create');
 Route::post('/addUser/store','UsersController@store');
 //route to view user details
 Route::get('/userDetails','UsersController@index');
+//route to delete user details
+Route::post('/userDetails/destroy','UsersController@destroy');
 // Route::resouce('/','UsersController@create');
 Route::resource('class','ClassController');
 // Route::get();
