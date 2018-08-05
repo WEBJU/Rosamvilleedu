@@ -34,7 +34,7 @@ class StudentsController extends Controller
                    '<p><b>Occupation: </b>'.$parent_info->parent_occupation.'</p>'.
                    '<p><b>Residence:</b>'.$parent_info->parent_residence.'</p>'.
                    '<p><b>Address:</b>'.$parent_info->parent_address.'</p>'.
-                   '<p><b>Phone Number:</b>'.$parent_info->parent_phone_no.'</p><br>';
+                   '<p><b>Phone Number:</b>'.$parent_info->parent_phone_no.'</p><br><hr>';
                echo $output;
            }
 
@@ -54,9 +54,6 @@ class StudentsController extends Controller
             $class = classess::find($student->class_id);
             $student['student_class']=$class->class_name;
             $student['class_id']=$class->id;
-
-
-
         }
 
         $classes = classess::all();
@@ -96,12 +93,12 @@ class StudentsController extends Controller
             $search_name = request('search');
             //check if its empty
             if(empty($search_name)){
-                $students = Student::all();
+                $students = Student::paginate(20);
             }else{
                 $students = Student::where('student_surname','like','%'.$search_name.'%')
                     ->orWhere('student_firstname','like','%'.$search_name.'%')
                     ->orWhere('student_other_name','like','%'.$search_name.'%')
-                    ->get();
+                    ->paginate(20);
             }
 
            if($students){

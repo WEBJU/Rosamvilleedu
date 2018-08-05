@@ -20,13 +20,17 @@ Route::get('/dashboard','DashboardController@index');
 // route to add student to the databse
 Route::get('/addStudent','StudentsController@create');
 Route::get('/viewStudent','StudentsController@index');//show all students
-Route::get('/addparent/existing_parents/{id}','StudentsController@all_parents');//add existing parent
 Route::post('/registerStudent','StudentsController@store');//store new student information
 Route::get('/searchStudent','StudentsController@search');//search for a student name
 Route::post('/student/delete','StudentsController@destroy');//delete a student
 Route::post('/updateStudent','StudentsController@update');//delete student record
-Route::post('/parents','ParentsController@store');//store parent child relationship
 Route::get('/student/parent_info','StudentsController@parentInfo');//get the parents information
+
+//parents
+Route::post('/parents','ParentsController@store');//store parent child relationship
+Route::get('/allParents/','ParentsController@show_all');//View all parents
+Route::get('/searchParent','ParentsController@search');//search by use of parent name
+Route::post('/updateParent','ParentsController@update');//update record
 //Route::get('/searchStudent/','StudentsController@searchForm');
 
 // // route to add teachers to the databse

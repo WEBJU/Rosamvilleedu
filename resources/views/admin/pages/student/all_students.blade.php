@@ -27,8 +27,7 @@
                 </form>
             </div>
             <div class="col-lg-2">
-                <a href="/addparent/existing_parents/1">All parents</a>
-                <a href="/student/parent_info">Parents</a>
+                <a href="/allParents/">All parents</a>
             </div>
         </div>
 
@@ -138,7 +137,7 @@
                 </tbody>
 
             </table>
-
+            {{$students->links()}}
 
         </div>
 
@@ -791,7 +790,6 @@
                 });
             });
         });
-
 
     </script>
 
