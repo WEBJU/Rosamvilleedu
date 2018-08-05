@@ -30,8 +30,8 @@
           <tr>
             <th>Teachers Name</th>
             <th>TSC Number</th>
-            <th>Class </th>
-            <th>Action</th>
+              <th>Class</th>
+            <th colspan="2">Action</th>
           </tr>
 
           </thead>

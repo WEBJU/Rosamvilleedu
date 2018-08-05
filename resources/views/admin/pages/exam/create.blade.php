@@ -16,8 +16,8 @@
       </div><!-- /.container-fluid -->
     </div>
         <h1 style="margin-left:20px;">Add Exams</h1>
-            <form class="form-horizontal" action="/saveExam" enctype="multipart/form-data">
-
+            <form class="form-horizontal" action="/saveExam" method="post" enctype="multipart/form-data">
+              @csrf
                   <div class="card-body">
                     <h3>Exams Information</h3>
                     <div class="form-group">
