@@ -58,7 +58,7 @@ class UsersController extends Controller
         $user->extra_information = $request->input('other_info');
         $user->save();
 
-        return redirect('admin.pages.users.create');
+        return redirect()->back()->with('success','New user added successfully');
 
     }
 

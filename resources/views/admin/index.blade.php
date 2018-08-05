@@ -235,13 +235,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/addExam" class="nav-link">
+                <a href="/exams/create" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Add Exam</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/viewExamDetails" class="nav-link">
+                <a href="/exams/" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>View Details</p>
                 </a>
@@ -433,19 +433,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/addExpenditure" class="nav-link">
+                <a href="/expenditures/create" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Add New Expenditure</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/expenditureDetails" class="nav-link">
+                <a href="/expenditures" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>View Past Expenditures</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/printexpenditureDetails" class="nav-link">
+                <a href="/expenditures/print" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Print Details</p>
                 </a>

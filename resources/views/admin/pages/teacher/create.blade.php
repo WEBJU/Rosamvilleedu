@@ -21,9 +21,9 @@
                   <div class="card-body">
                     <h3>Teacher's Information</h3>
                     <div class="form-group">
-                      <label for="surname" class="col-sm-2 control-label">Surname</label>
+                      <label for="surname"  class="col-sm-2 control-label">Surname</label>
                       <div class="col-sm-10">
-                        <input type="text" name="surname"class="form-control" id="surname" placeholder="Surname">
+                        <input type="text" name="surname" value="{{old('surname')}}" class="form-control" id="surname" placeholder="Surname">
                       </div>
                     </div>
                     <div class="form-group">
@@ -68,7 +68,7 @@
                             <div class="col-sm-10">
                               <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                             </div>
-                          </div>                    
+                          </div>
                     <div class="form-group">
                       <label for="other_name" class="col-sm-2 control-label">Subjects Specialized</label>
                       <div class="col-sm-10">
@@ -84,7 +84,7 @@
                     </div>
                     <div class="form-group">
                         <label for="fname" class="col-sm-2 control-label">Experience</label>
-  
+
                         <div class="col-sm-10">
                           <textarea class="form-control" rows="5" name="experience" id="experience" placeholder="Experience"></textarea>
                         </div>

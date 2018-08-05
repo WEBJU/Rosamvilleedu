@@ -47,7 +47,7 @@ class ExpendituresController extends Controller
         $expenditure->amount_spend=$request->input('amount');
         $expenditure->date_spend=$request->input('date_spend');
         $expenditure->save();
-        return redirect('/addExpenditure')->with('success','Expenditure created successfully');
+        return redirect()->back()->with('success','Expenditure created successfully');
     }
 
     /**
@@ -69,7 +69,8 @@ class ExpendituresController extends Controller
      */
     public function edit($id)
     {
-        //
+        $expenditure=Expenditure::find($id);
+        return view('admin.pages.expenditures.edit_expenditure',compact('expenditure','id'));
     }
 
     /**
@@ -81,7 +82,14 @@ class ExpendituresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $expenditure=Expenditure::find($id);
+      $expenditure->expenditure_type=$request->input('expenditure');
+      $expenditure->description=$request->input('description');
+      $expenditure->amount_spend=$request->input('amount');
+      $expenditure->date_spend=$request->input('date_spend');
+      $expenditure->save();
+      return redirect()->back()->with('success','Expenditure created successfully');
+
     }
 
     /**
@@ -92,6 +100,8 @@ class ExpendituresController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $expenditure=Expenditure::find($id);
+      $expenditure->delete();
+      return redirect()->back()->with('success','Expenditure deleted successfully');
     }
 }

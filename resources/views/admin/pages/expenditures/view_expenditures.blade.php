@@ -33,7 +33,7 @@
             <th>Description</th>
             <th>Amount</th>
             <th>Date Spend</th>
-            <th>Action</th>
+            <th colspan="3">Action</th>
           </tr>
 
           </thead>
@@ -45,7 +45,13 @@
             <td>{{$expenditure->description}}</td>
             <td>Kshs.{{$expenditure->amount_spend}}</td>
             <td>{{$expenditure->date_spend}}</td>
-            <td><a href="#" class="btn btn-info">Edit</a><a href="#" class="btn btn-danger m-2">Delete</a><a href="#" class="btn btn-secondary">Print Details</a></td>
+            <td><a href="{{action('ExpendituresController@edit',$expenditure['id'])}}" class="btn btn-info">Edit</a></td>
+            <td><form action="{{action('ExpendituresController@destroy',$expenditure['id'])}}" method="post">
+              @csrf
+              <input name="_method" type="hidden" value="DELETE">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form></td>
+            <td><a href="#" class="btn btn-secondary">Print Details</a></td>
 
           </tr>
               @endforeach

@@ -15,9 +15,10 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <a href="/addUser" class="btn btn-default">Go Back</a>
-    <br>
-    <table class="table table-striped">
+    <a href="/addUser" class="btn btn-primary m-1">Add New User</a>
+  
+    <table class="table table-bordered table-striped">
+      <thead>
         <tr>
             <th>Sir Name</th>
             <th>First Name</th>
@@ -26,6 +27,8 @@
             <th>Email</th>
             <th>Phone Number</th>
         </tr>
+      </thead>
+      <tbody>
         @if(count($user) > 0)
             @foreach($user as $us)
                 <tr>
@@ -38,5 +41,6 @@
                 </tr>
             @endforeach
         @endif
+      </tbody>
     </table>
   @endsection

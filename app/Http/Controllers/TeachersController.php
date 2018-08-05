@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Teachers;
 use App\Users;
+use App\classess;
 
 class TeachersController extends Controller
 {
@@ -19,9 +20,11 @@ class TeachersController extends Controller
         $teacher = Teachers::all();
         // // getting all users from the database
         $users = Users::all();
+        // geting all classes from the database
+        $classes = classess::all();
 
         // return view('admin.pages.teacher.view_teacher', compact('user'))->with('teacher', $teacher);
-        return view('admin.pages.teacher.view_teacher',compact('users'))->with('teacher', $teacher);
+        return view('admin.pages.teacher.view_teacher',compact('users'))->with('teacher', $teacher)->with('classes', $classes);
 
     }
     /**
@@ -51,18 +54,18 @@ class TeachersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'surname'=>'required',
-            'first_name'=>'required',
-            'other_name'=>'required',
-            'national_id'=>'required',
-            'tsc_number'=>'required',
-            'experience'=>'required',
+            'surname'=>'required|string|min:2',
+            'first_name'=>'required|string|min:2',
+            'other_name'=>'required|string|min:2',
+            'national_id'=>'required|integer',
+            'tsc_number'=>'required|integer',
+            'experience'=>'required|string|min:4',
             'subjects_taught'=>'required',
             'email_address'=>'required|email',
-            'phone_number'=>'required',
+            'phone_number'=>'required|string|regex:/(07)[0-9]{8}/',
             'password'=>'required',
         ]);
-
+        
         $user = new Users;
         $user->sur_name = $request->input('surname');
         $user->first_name = $request->input('first_name');
@@ -117,7 +120,37 @@ class TeachersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'teacher_surname'=>'required',
+            'teacher_fname'=>'required',
+            'teacher_lname'=>'required',
+            'teacher_tsc_no'=>'required',
+            'teacher_class'=>'required',            
+        ]);
+
+        $id = $request->input('teacher_id');
+        $teacher = Teachers::find($id);
+        $user = Users::find($id);
+        $clas = classess::find($id);
+
+        if($teacher->user_id == $user->id){
+            $user->sur_name = $request->input('teacher_surname');
+            $user->first_name = $request->input('teacher_fname');
+            $user->last_name = $request->input('teacher_lname');
+            $user->save();
+
+            $teacher->teacher_tsc_no = $request->input('teacher_tsc_no');
+            $teacher->save();
+
+            if($teacher->user_id == $clas->class_teacher_id){
+                $clas->class_name = $request->input('teacher_class');
+                $clas->save();
+            }
+
+        }
+
+        return redirect('/viewTeachers')->with('success', 'Details updated Successfully');
+        
     }
 
     /**

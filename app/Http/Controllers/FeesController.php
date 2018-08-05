@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Fees;
+use App\Student;
+use App\classess;
+
 class FeesController extends Controller
 {
     /**
@@ -13,7 +16,11 @@ class FeesController extends Controller
      */
     public function index()
     {
-      return view('admin.pages.fees.view_fees');
+        $all_classes = classess::all();
+        $all_students = Student::all();
+        $all_fees = Fees::all();
+
+        return view('admin.pages.fees.view_fees', compact('all_classes'))->with('all_students',$all_students)->with('all_fees', $all_fees);
     }
 
     /**
@@ -23,7 +30,9 @@ class FeesController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.fees.create');
+        $all_classes = classess::all();
+        $all_students = Student::all();
+        return view('admin.pages.fees.create', compact('all_students'))->with('all_classes', $all_classes);
     }
 
     /**
@@ -37,7 +46,7 @@ class FeesController extends Controller
        
         $this->validate($request,[
             'student_id'=>'required',
-            'school_terms'=>'required',
+            'school_term'=>'required',
             'total_fees'=>'required',
             'amount_paid'=>'required',
             'class_id'=>'required',
@@ -46,16 +55,16 @@ class FeesController extends Controller
         ]);
 
         $fee = new Fees;
-        $fee->student_id = $request->input('student_id');
-        $fee->student_id = $request->input('school_terms');
-        $fee->amount_to_be_paid = $request->input('total_fees');
-        $fee->amount_id = $request->input('amount_paid');
+        $fee->student_id = $request->input('student_id'); 
         $fee->class_id = $request->input('class_id');
+        $fee->term_paid_for = $request->input('school_term');     
+        $fee->amount_to_be_paid = $request->input('total_fees');
+        $fee->amount_paid = $request->input('amount_paid');       
         $fee->date_paid = $request->input('date_of_payment');
-        $fee->balancee = $request->input('fee_balance');
+        $fee->balance = $request->input('fee_balance');
         $fee->save();
 
-        return view();
+        return redirect('/addFees')->with('success', 'Fees Paid successfully');
         
     }
 
@@ -90,7 +99,40 @@ class FeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'student_surname'=>'required',
+            'student_fname'=>'required',
+            'student_lname'=>'required',
+            'student_class'=>'required',
+            'amount_paid'=>'required',
+            'date_paid'=>'required',
+            'balance'=>'required',
+
+        ]);
+        
+        $id = $request->input('fees_id');
+        $fee = Fees::find($id);
+        $student = Student::find($id);
+        $clas = classess::find($id);
+        return ['id'=>$id];
+        // if($student->id == $fee->student_id){
+        //     $student->student_surname = $request->input('student_surname');
+        //     $student->student_firstname = $request->input('student_fname');
+        //     $student->student_other_name = $request->input('student_lname');
+        //     $student->save();           
+
+        //     $fee->amount_paid = $request->input('amount_paid');
+        //     $fee->date_paid = $request->input('date_paid');
+        //     $fee->balance = $request->input('balance');
+        //     $fee->save();
+
+        //     if($student->class_id == $clas->id){
+        //         $clas->class_name = $request->input('student_class');
+        //         $clas->save();
+        //     }
+        // }
+
+        return redirect('/feeDetails')->with('success', 'Fees Updated Successfully');
     }
 
     /**
@@ -99,8 +141,13 @@ class FeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $fee_id = $request->input('delete_fees');
+        $fee = Fees::where('id', $fee_id);
+        $fee->delete();
+
+        return redirect('/feeDetails')->with('success', 'Fees Delate Successfully');
     }
 }
