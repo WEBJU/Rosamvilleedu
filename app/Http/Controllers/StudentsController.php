@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\classess;
 use App\Fees;
 use App\parent_child_relations;
+use App\parents;
 use App\results;
 use App\Student;
 use Illuminate\Http\Request;
@@ -12,6 +13,34 @@ use Illuminate\Support\Facades\Validator;
 
 class StudentsController extends Controller
 {
+
+    //get the parent information
+    public function parentInfo(Request $request){
+       if($request->ajax()){
+           $output = "";
+           $student_id = request('search');
+
+           //get all parents related with the child
+           //$parents = parent_child_relations::where('student_id','=',2)->get();
+           $parents = parent_child_relations::where('student_id','=',$student_id)->get();
+
+           //loop through the parents
+           foreach ($parents as $parent){
+               //$parents['parent_info'] = parents::find($parent->parent_id);
+               $parent_info = parents::find($parent->parent_id);
+
+               $output =
+                   '<p><b>Name: </b>'.$parent_info->parent_name.'</p>'.
+                   '<p><b>Occupation: </b>'.$parent_info->parent_occupation.'</p>'.
+                   '<p><b>Residence:</b>'.$parent_info->parent_residence.'</p>'.
+                   '<p><b>Address:</b>'.$parent_info->parent_address.'</p>'.
+                   '<p><b>Phone Number:</b>'.$parent_info->parent_phone_no.'</p><br>';
+               echo $output;
+           }
+
+
+       }
+    }
     /**
      * Display a listing of the resource
      * @return \Illuminate\Http\Response
@@ -25,6 +54,9 @@ class StudentsController extends Controller
             $class = classess::find($student->class_id);
             $student['student_class']=$class->class_name;
             $student['class_id']=$class->id;
+
+
+
         }
 
         $classes = classess::all();
@@ -37,9 +69,10 @@ class StudentsController extends Controller
      */
     public function all_parents($id){
         //check if student has two parents / guardian /single_parent
-        /*
-         *
-         */
+        $student = Student::find($id);
+
+        //get alll parents
+
         return view('admin.pages.student.view_parents');
     }
 
@@ -86,9 +119,14 @@ class StudentsController extends Controller
                         '<td>'.$student->student_class.'</td>'.
                         '<td>'.$student->student_date_of_birth.'</td>'.
                         '<td>'.
-                            '<a href="/addparent/existing_parents/'.$student->id.'" class="btn btn-primary">Existing parent</a>'.
-                            '<a href="#" class="new_parent_mod btn btn-success m-1" id="new_parent">New parent </a>'.
+                            '<a href="#" 
+                                class="new_parent_mod btn btn-success m-1" 
+                                id="new_parent"
+                                data-id="'.$student->id.'"
+                                data-parent="'.$student->parent_count.'"
+                                >Add parent </a>'.
                         '</td>'.
+
                         '<td>'.
                             '<a href="#"
                                    class="delete_student btn btn-danger m-1"
@@ -155,7 +193,6 @@ class StudentsController extends Controller
         }
 
     }
-
 
 
     /**
@@ -246,11 +283,14 @@ class StudentsController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json(
-                array(
-                    'errors'=>$validator->getMessageBag()->toArray()
-                ),422
-            );
+            $errors = $validator->errors();
+            $errors = json_decode($errors);
+            //return response()->json(array('errors'=>$validator->getMessageBag()->toArray()));
+            return response()->json([
+                'success'=>false,
+                'message'=>$errors
+            ],422);
+
         }else{
             //save the new changes
             $student_id = $request->input('student_id');
@@ -268,9 +308,11 @@ class StudentsController extends Controller
             $student->class_id = request('class_id');
             $student->student_number_of_siblings = request('siblings');
             $student->save();
-            return response('true',200);
+            return response()->json(['success'=>true,'message'=>'record updated'],200);
         }
 
+
+            //return response('true',200);
 
 
 
