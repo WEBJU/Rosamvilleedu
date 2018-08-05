@@ -99,7 +99,40 @@ class FeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'student_surname'=>'required',
+            'student_fname'=>'required',
+            'student_lname'=>'required',
+            'student_class'=>'required',
+            'amount_paid'=>'required',
+            'date_paid'=>'required',
+            'balance'=>'required',
+
+        ]);
+        
+        $id = $request->input('fees_id');
+        $fee = Fees::find($id);
+        $student = Student::find($id);
+        $clas = classess::find($id);
+        return ['id'=>$id];
+        // if($student->id == $fee->student_id){
+        //     $student->student_surname = $request->input('student_surname');
+        //     $student->student_firstname = $request->input('student_fname');
+        //     $student->student_other_name = $request->input('student_lname');
+        //     $student->save();           
+
+        //     $fee->amount_paid = $request->input('amount_paid');
+        //     $fee->date_paid = $request->input('date_paid');
+        //     $fee->balance = $request->input('balance');
+        //     $fee->save();
+
+        //     if($student->class_id == $clas->id){
+        //         $clas->class_name = $request->input('student_class');
+        //         $clas->save();
+        //     }
+        // }
+
+        return redirect('/feeDetails')->with('success', 'Fees Updated Successfully');
     }
 
     /**

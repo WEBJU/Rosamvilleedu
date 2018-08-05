@@ -72,7 +72,7 @@ Route::get('/addResults','ExamsController@addResult');
 // route to add fees details to the databse
 Route::post('/addFees/store','FeesController@store');
 // route to edit and update fees detils
-Route::post('/feeDetails/update/{student_id}','FeesController@update');
+Route::post('/feeDetails/update/{fees_id}','FeesController@update');
 //route to view the fee page
 Route::get('/addFees','FeesController@create');
 // route to display a form to expenditure to the databse 
