@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('admin.index');
+    return view('inc.dashboard');
 });
 //route to the main dashboard
 Route::get('/dashboard','DashboardController@index');
@@ -32,8 +32,10 @@ Route::get('/addTeacher','TeachersController@create');
 
 // // route to add teachers to the databse
 Route::post('/addTeacher/store','TeachersController@store');
-// route to add class to the databse
+// route to view all teachers
 Route::get('/viewTeachers','TeachersController@index');
+// route to edit and update all teachers details
+Route::post('/viewTeachers/update/{teacher_id}','TeachersController@update');
 // route to delete teacher's information from the databse
 Route::post('/viewTeachers/destroy','TeachersController@destroy');
 // route to add class to the databse
@@ -55,6 +57,8 @@ Route::get('/addSubject','SubjectsController@create');
 Route::post('/addSubject/edit','SubjectsController@edit');
 //route to delete subject
 Route::post('/viewSubjectDetails/destroy','SubjectsController@destroy');
+//route to delete subject
+Route::post('/viewSubjectDetails/update/{subject_id}','SubjectsController@update');
 // route to add subject to the databse
 Route::get('/saveSubject','SubjectsController@store');
 //
@@ -74,12 +78,20 @@ Route::resource('exams','ExamsController');
 Route::get('/addResults','ExamsController@addResult');
 // route to add fees details to the databse
 Route::post('/addFees/store','FeesController@store');
+// route to edit and update fees detils
+Route::post('/feeDetails/update/{student_id}','FeesController@update');
 //route to view the fee page
 Route::get('/addFees','FeesController@create');
+
 // route to display a form to expenditure to the databse
 Route::resource('expenditures','ExpendituresController');
 // Route::get('/addExpenditure','ExpendituresController@create');
  Route::post('/saveExpenditure','ExpendituresController@store');
+
+// route to display a form to expenditure to the databse 
+Route::get('/addExpenditure','ExpendituresController@create');
+Route::post('/saveExpenditure','ExpendituresController@store');
+
 // // route to add Users to the databse
 Route::get('/addUser','UsersController@create');
 //route to insert users into the database
