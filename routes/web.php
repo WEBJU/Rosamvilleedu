@@ -60,9 +60,16 @@ Route::get('/saveSubject','SubjectsController@store');
 //
 // Route::get('/viewSubjectDetails/edit', '');
 // route to add Exam to the databse
-Route::get('/addExam','ExamsController@create');//show form for creating exam
-Route::get('/viewExamDetails','ExamsController@index');//displays exams
-Route::get('/saveExam','ExamsController@store');//store exam
+ // Route::get('/addExam','ExamsController@create');//show form for creating exam
+// Route::get('/viewExamDetails','ExamsController@index');//displays exams
+  Route::post('/saveExam','ExamsController@store');//store exam
+// Route::get('/edit/{$id}',[
+//   'uses'=>'ExamsController@edit'
+// ]);
+Route::resource('exams','ExamsController');
+// Route::post('/delete/{$id}',[
+//   'uses'=>'ExamsController@destroy'
+// ]);
 // route to add Exam Results to the databse
 Route::get('/addResults','ExamsController@addResult');
 // route to add fees details to the databse
@@ -70,8 +77,9 @@ Route::post('/addFees/store','FeesController@store');
 //route to view the fee page
 Route::get('/addFees','FeesController@create');
 // route to display a form to expenditure to the databse
-Route::get('/addExpenditure','ExpendituresController@create');
-Route::post('/saveExpenditure','ExpendituresController@store');
+Route::resource('expenditures','ExpendituresController');
+// Route::get('/addExpenditure','ExpendituresController@create');
+ Route::post('/saveExpenditure','ExpendituresController@store');
 // // route to add Users to the databse
 Route::get('/addUser','UsersController@create');
 //route to insert users into the database
@@ -79,7 +87,7 @@ Route::post('/addUser/store','UsersController@store');
 //route to view user details
 Route::get('/userDetails','UsersController@index');
 // Route::resouce('/','UsersController@create');
-
+Route::resource('class','ClassController');
 // Route::get();
 // Route::resource('fees','FeesController');
 // controller to display list of teachers
@@ -91,6 +99,6 @@ Route::post('/feeDetails/destroy','FeesController@destroy');
 //get subject Details
 Route::get('/viewSubjectDetails','SubjectsController@index');
 //Route to display expenditures
-Route::get('/expenditureDetails','ExpendituresController@index');
+// Route::get('/expenditureDetails','ExpendituresController@index');
 //route to delete
 Route::get('delete/{class_id}',['uses'=>'ClassController@delete','as'=>'delete-class']);

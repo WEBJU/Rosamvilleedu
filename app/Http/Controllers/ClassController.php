@@ -76,7 +76,9 @@ class ClassController extends Controller
      */
     public function edit($id)
     {
-        //
+           
+        $class=classess::find($id);
+        return view('admin.pages.class.edit_class',compact('class','id'));
     }
 
     /**
@@ -88,7 +90,15 @@ class ClassController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $classess=classess::find($id);
+        $classess->class_name=$request->input('class_name');
+        $classess->class_capacity=$request->input('class_capacity');
+        $classess->class_prefect_id=$request->input('class_prefect');
+        $classess->class_teacher_id=$request->input('class_teacher');
+        // $classess->class_year=$request->input('class_year');
+        $classess->save();
+        return back()->with('success',' Class Edited successfully');
+        
     }
 
     /**
@@ -102,7 +112,7 @@ class ClassController extends Controller
     //     classess::destroy($id);
     //     return redirect()->back()->with('success','Class deleted successfully');
     // }
-    public function delete($id)
+    public function destroy($id)
     {
         $classess=classess::findOrFail($id);
         $classess->delete();

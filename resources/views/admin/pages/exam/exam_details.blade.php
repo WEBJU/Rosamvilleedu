@@ -25,27 +25,35 @@
                 </span>
           </div>
         </form>
-        <table  class="table">
+        <table  class="table table-bordered table-striped">
           <thead>
           <tr>
             <th>Exam Type</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Release Date</th>
-            <th>Action</th>
+            <th colspan="3">Action</th>
           </tr>
 
           </thead>
           <tbody>
             {{-- check if exams exist --}}
-            @if(count($exams)>1)
+            @if(count($exams)>0)
             @foreach ($exams as $exam)
           <tr>
             <td>{{$exam->exam_type}}</td>
             <td>{{$exam->exam_start_date}}</td>
             <td>{{$exam->exam_end_date}}</td>
             <td>{{$exam->exam_release_date}}</td>
-            <td><a href="#" class="btn btn-danger m-1">Delete</a><a href="/exams/{{$exam->id}}/edit" class="btn btn-info">Edit</a><a href="#" class="btn btn-secondary m-1">Print Details</a></td>
+            <td><a href="{{action('ExamsController@edit',$exam['id'])}}" class="btn btn-info">Edit</a></td>
+            <td>
+              <form action="{{action('ExamsController@destroy',$exam['id'])}}" method="post">
+                @csrf
+                <input name="_method" type="hidden" value="DELETE">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+            <td><a href="#" class="btn btn-secondary">Print Details</a></td>
           </tr>
             @endforeach
             @endif

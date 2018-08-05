@@ -33,8 +33,8 @@
             <th>Capacity</th>
             <th>Class Prefect</th>
             <th>Class Teacher</th>
-            <th>Class Year</th>
-            <th>Action</th>
+
+            <th colspan="3">Action</th>
           </tr>
 
           </thead>
@@ -46,12 +46,17 @@
             <td>{{$class->class_capacity}}</td>
             <td>{{$class->class_prefect}}</td>
             <td>{{$class->class_teacher_id}}</td>
-            <td>{{$class->class_year}}</td>
+            
 
             <td>
-              <a href="#" class="btn btn-info">Edit</a>
-              <a href="{{ route('delete-class',['class_id',$class->id])}}" class="btn btn-danger m-2">Delete</a>
-              <a href="#" class="btn btn-secondary">Print Details</a></td>
+              <a href="{{ action('ClassController@edit',$class['id']) }}" class="btn btn-info">Edit</a>
+            </td>
+              <td><form action="{{action('ClassController@destroy',$class['id'])}}" method="post">
+              @csrf
+              <input name="_method" type="hidden" value="DELETE">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form></td>
+              <td><a href="" class="btn btn-secondary">Print Details</a></td>
 
           </tr>
               @endforeach

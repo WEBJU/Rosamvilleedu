@@ -56,7 +56,7 @@ class ExamsController extends Controller
         $exam->exam_end_date=$request->input('end_date');
         $exam->exam_release_date=$request->input('release_date');
         $exam->save();
-        return redirect('/addExam')->with('success','New exam added Successfully');
+        return redirect()->back()->with('success','New exam added Successfully');
 
     }
 
@@ -80,7 +80,7 @@ class ExamsController extends Controller
     public function edit($id)
     {
         $exam=Exam::find($id);
-        return view('admin.pages.exam.edit_exam')->with('exam',$exam);
+        return view('admin.pages.exam.edit_exam',compact('exam','id'));
     }
 
     /**
@@ -92,7 +92,14 @@ class ExamsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $exam=Exam::find($id);
+      $exam->exam_type=$request->input('term');
+      $exam->exam_start_date=$request->input('start_date');
+      $exam->exam_end_date=$request->input('end_date');
+      $exam->exam_release_date=$request->input('release_date');
+      $exam->save();
+      return redirect('/exams')->with('success','New exam updated Successfully');
+
     }
 
     /**
@@ -103,6 +110,8 @@ class ExamsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $exam=Exam::find($id);
+        $exam->delete();
+        return redirect('/exams')->with('success','Exam details removed successfully');
     }
 }

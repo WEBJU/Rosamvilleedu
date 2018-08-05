@@ -62,7 +62,7 @@ class TeachersController extends Controller
             'phone_number'=>'required|string|regex:/(07)[0-9]{8}/',
             'password'=>'required',
         ]);
-
+        
         $user = new Users;
         $user->sur_name = $request->input('surname');
         $user->first_name = $request->input('first_name');
