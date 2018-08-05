@@ -26,15 +26,14 @@
                     </div>
                 </form>
             </div>
-            <div class="col-lg-2"></div>
+            <div class="col-lg-2">
+                <a href="/addparent/existing_parents/1">All parents</a>
+                <a href="/student/parent_info">Parents</a>
+            </div>
         </div>
-
 
         <div class="table-responsive">
             <table class="table table-striped table-hover" id="studentsTable">
-                <div id="validation-errors">
-
-                </div>
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -75,8 +74,13 @@
                             <td>{{$student->student_class}}</td>
                             <td>{{$student->student_date_of_birth}}</td>
                             <td>
-                                <a href="/addparent/existing_parents/{{$student->id}}" class="btn btn-primary">Existing parent</a>
-                                <a href="#" class="new_parent_mod btn btn-success" id="new_parent">New parent </a>
+                               <!-- <a href="/addparent/existing_parents/{{$student->id}}" class="btn btn-primary">Existing parent</a>-->
+                                <a href="#"
+                                   class="new_parent_mod btn btn-success"
+                                   id="new_parent"
+                                   data-id="{{$student->id}}"
+                                   data-parent="{{$student->parent_count}}"
+                                > Add parent </a>
                             </td>
 
                             <td>
@@ -148,30 +152,110 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Add Parent to Student John Doe</h4>
+                    <h4 id="add_parent_heading">Add New Parent Record</h4>
                    <button type="button" class="close" data-dismiss="modal">&times;</button><br>
                 </div>
 
                 <div class="modal-body">
                     <form role="form">
-                        <div class="form-group">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <h1 style="color: red" id="parent_message"></h1>
+                        <div class="form-group" id="parent_category_1">
                             <label for="parentType">Select Category</label>
-                            <select name="parent_category" class="form-control">
-                                <option value="1">Single Parent</option>
-                                <option value="1">Guardian</option>
-                                <option value="2">Parents</option>
+                            <select name="parent_category" class="form-control" id="parent_category">
+                                <option value="single">Single Parent</option>
+                                <option value="guardian">Guardian</option>
+                                <option value="parents">Parents</option>
+                                <option value="existing">Existing Parents</option>
                             </select>
                         </div>
                     </form>
 
-                    <form action="#" method="post">
-                        {{csrf_token()}}
+                    <div id="parent_validation-errors">
 
+                    </div>
+
+                    <form action="#" method="post">
+                        <!--<input type="hidden" value="{{csrf_field()}}" name="_token">-->
+                        <input type="hidden" value="" name="parent_student_id" id="parent_student_id">
+
+                         <div id="existing_parent">
+                             <label>Enter parent phone number</label>
+                             <div class="form-group">
+                                <input type="number" class="form-control" id="existing_parent_phone" name="existing_parent_phone" required>
+                             </div>
+                             <p></p>
+                         </div>
+
+                        <div id="oneForm">
+                            <h3 class="text-info">Parents / Guardian Information</h3><hr>
+
+                        <h5 class="parent_title text-secondary" id="parent_title"> Guardian Information</h5>
+                        <div class="form-group">
+                          <label class="parent_name control-label" id="parent_name">Guardian/Parent Name</label>
+                            <input type="text" class="form-control" id="" placeholder="Name" name="one_parent_name">
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label">Occupation</label>
+                            <input type="text" class="form-control" id="" placeholder="Occupation" name="one_occupation">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="" class="control-label">Residential Area</label>
+                            <input type="text" class="form-control" id="" placeholder="Residential Area" name="one_residential">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputEmail3" class="control-label">Address</label>
+                            <input type="text" class="form-control" id="" placeholder="Address" name="one_address">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="" class=" control-label">Contact</label>
+                            <input type="number" class="form-control" id="" placeholder="Contact" name="one_contact">
+                        </div>
+
+                        <hr>
+                        </div>
+
+                        <div id="secondForm" class="hidden">
+                            <h5 class="text-secondary"> Mothers Information</h5>
+                            <div class="form-group">
+                                <label class=" control-label">Mothers Name</label>
+                                <input type="text" class="form-control" id="" placeholder="Mothers Name" name="two_parent">
+                            </div>
+
+                            <div class="form-group">
+                                <label class=" control-label">Occupation</label>
+                                    <input type="text" class="form-control" id="" placeholder="Occupation" name="two_occupation">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="" class=" control-label">Residential Area</label>
+                                <input type="text" class="form-control" id="" placeholder="Residential Area" name="two_residential">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class=" control-label">Address</label>
+                                <input type="text" class="form-control" id="" placeholder="Address" name="two_address">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="" class="control-label">Contact</label>
+                                <input type="number" class="form-control" id="" placeholder="Contact" name="two_contact">
+                            </div>
+
+                        </div>
                     </form>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <div class="" id="parent_button">
+                        <button type="submit" class="parent_submit btn btn-lg btn-primary">Submit</button>
+                    </div>
+
+                    <button type="submit" class="btn btn-lg btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -214,6 +298,11 @@
                 </div>
 
                 <div class="modal-body">
+                    <!--<p class="error text-center alert alert-danger hidden"></p>-->
+                    <div id="validation-errors">
+
+                    </div>
+
                     <form class="form-horizontal" action="/updateStudent">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <input type="hidden" value="" name="student_id" id="edit_id">
@@ -321,137 +410,20 @@
                                 <textarea class="form-control"name="medical_info" rows="5" id="edit_medical_info"></textarea>
                             </div>
                         </div>
-                        <!--
-                        <h3 class="text-info">Parents/Guardian Information</h3>
-                          <h5 class="text-secondary"> Fathers Information</h5>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">Fathers Name</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Fathers Name">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">Occupation</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Occupation">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Residential Area</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Residential Area">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Address">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Contact</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Contact">
-                            </div>
-                          </div>
 
-                            <h5 class="text-secondary"> Mothers Information</h5>
-                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Mothers Name</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Mothers Name">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Occupation</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Occupation">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="" class="col-sm-2 control-label">Residential Area</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Residential Area">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Address">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="" class="col-sm-2 control-label">Contact</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Contact">
-                              </div>
-                            </div>
-
-                              <h5 class="text-secondary"> Guardians Information</h5>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">Guardians Name</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Guardians Name">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">Occupation</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Occupation">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Residential Area</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Residential Area">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Address">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Contact</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Contact">
-                                </div>
-                              </div>
-                              <hr>
-                              <h3>Person to be contacted incase of an emergency</h3>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">Name</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Name">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">Relationship</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Relationship">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Contact</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Contact">
-                                </div>
-                                <div class="form-group m-2">
-                                    <button  type="submit"  class="btn btn-primary mb-2">Register Now</button>
-                                </div>
-                        </div>
-
-                        <!-- /.card-footer -->
 
                     </form>
                 </div>
 
                 <div class="edit_modal-footer modal-footer">
                     <div class="form-group m-2">
-                        <button  type="button"  class="edit_button btn btn-lg btn-primary mb-2" id="edit_button">Save Changes</button>
+                        <button  type="button"  class="edit_button btn btn-lg btn-primary" id="edit_button">Save Changes</button>
                     </div>
-                    <button class="btn btn-lg btn-danger" data-dismiss="modal">Cancel</button>
+
+                    <div class="form-group m-2">
+                        <button class="btn btn-lg btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -468,7 +440,10 @@
                 </div>
 
                 <div class="modal-body">
-                    <form class="form-horizontal" enctype="multipart/form-data" method="post">
+                    <button class="btn btn-primary btn-lg" data-toggle="collapse" data-target="#student_info">Student Information</button>
+                    <button class="btn btn-primary btn-lg" data-toggle="collapse" data-target="#parent_info">Parents information</button>
+
+                    <form class="form-horizontal collapse" enctype="multipart/form-data" method="post" id="student_info">
                         <div class="card-body">
                             <p class="text-info">Student Information</p>
                             <div class="form-group">
@@ -555,130 +530,16 @@
                             </div>
 
                         </div>
-                        <!--
-                        <h3 class="text-info">Parents/Guardian Information</h3>
-                          <h5 class="text-secondary"> Fathers Information</h5>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">Fathers Name</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Fathers Name">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-sm-2 control-label">Occupation</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Occupation">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Residential Area</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Residential Area">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Address">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">Contact</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="" placeholder="Contact">
-                            </div>
-                          </div>
 
-                            <h5 class="text-secondary"> Mothers Information</h5>
-                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Mothers Name</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Mothers Name">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-sm-2 control-label">Occupation</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Occupation">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="" class="col-sm-2 control-label">Residential Area</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Residential Area">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Address">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="" class="col-sm-2 control-label">Contact</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Contact">
-                              </div>
-                            </div>
-
-                              <h5 class="text-secondary"> Guardians Information</h5>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">Guardians Name</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Guardians Name">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">Occupation</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Occupation">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Residential Area</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Residential Area">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Address">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Contact</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Contact">
-                                </div>
-                              </div>
-                              <hr>
-                              <h3>Person to be contacted incase of an emergency</h3>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">Name</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Name">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label class="col-sm-2 control-label">Relationship</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Relationship">
-                                </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Contact</label>
-                                <div class="col-sm-10">
-                                  <input type="text" class="form-control" id="" placeholder="Contact">
-                                </div>
-                                <div class="form-group m-2">
-                                    <button  type="submit"  class="btn btn-primary mb-2">Register Now</button>
-                                </div>
-                        </div>
-
-                        <!-- /.card-footer -->
 
                     </form>
+
+                    <div class="collapse" id="parent_info"><br>
+                        <h4>Parents Information</h4>
+                        <div id="">
+                            <P id="parents_detailzzz">s</P>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -698,7 +559,70 @@
         //launch the new parent modal
         $(document).ready(function () {
             $(document).on('click','.new_parent_mod',function () {
+                //remove any errors
+                $('.alert').hide();
+
+                var parent_count = $(this).data('parent');
+                if(parent_count > 2){
+                    //student has enough parents
+                    $('#parent_message').show();
+                    $('#parent_message').text("You can't add anymore parents/guardian to this child!! "+"This child has enough parents/guardians");
+                    $('#parent_category_1').hide();
+                    $('#oneForm').hide();
+                    $('#secondForm').hide();
+                    $('#parent_button').hide();
+                    $('#existing_parent').hide();
+                }else{
+                    $('#parent_category_1').show();
+                    $('#parent_message').hide();
+                }
+                $('#parent_student_id').val($(this).data('id'));
                 $('#parentModal').modal('show');
+                $('.error').hide();
+
+            });
+        });
+
+        //check if parent form is 1/2
+        $(document).ready(function () {
+            //hide the second form
+            $('#secondForm').hide();
+            $('#oneForm').hide();
+            $('#parent_button').hide();
+            $('#existing_parent').hide();
+
+            $('#parent_category').change(function () {
+                $('#parent_button').show();
+               var parent_category = this.value;
+
+               if(parent_category === 'single' || parent_category === 'guardian'){
+                    //display only one form
+                    $('#oneForm').show();
+                    $('#secondForm').hide();
+                   $('#existing_parent').hide();
+
+                    //single or guardian
+                    if(parent_category === 'single'){
+                        //title changes to single
+                        $('.parent_title').text('Parent Information');
+                        $('.parent_name').text('Parent Name');
+                    }else{
+                       $('.parent_title').text('Guardian Information');
+                       $('.parent_name').text('Guardian Name');
+                    }
+
+               }else if(parent_category === 'parents'){
+                    //display form 1 and 2
+                   $('.parent_title').text("Father's Information");
+                   $('.parent_name').text("Father's Name");
+                   $('#oneForm').show();
+                   $('#secondForm').show();
+                   $('#existing_parent').hide();
+               }else{
+                   $('#oneForm').hide();
+                   $('#secondForm').hide();
+                   $('#existing_parent').show();
+               }
             });
         });
 
@@ -714,6 +638,7 @@
         //launch the edit modal
         $(document).ready(function () {
             $(document).on('click','.student_edit',function () {
+                $('.error').hide();
                 $('#edit_id').val($(this).data('id'));
                 $('#edit_surname').val($(this).data('surname'));
                 $('#edit_fname').val($(this).data('firstname'));
@@ -729,13 +654,27 @@
                 $('#edit_emergency_contact').val($(this).data('emergency'));
                 $('#edit_emergency_phone').val($(this).data('emergency_contact'));
                 $('#edit_emergency_relationship').val($(this).data('relationship'));
+                $('.alert').remove();//remove any errors
                 $('#editModal').modal('show');
             });
         });
 
         //launch the student details
         $(document).ready(function () {
+            //get the parent's info
             $(document).on('click','.student_details',function () {
+               //$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+                $value = $(this).data('id');
+                $.ajax({
+                    type:'get',
+                    url:'/student/parent_info',
+                    data:{'search':$value},
+                    success:function (data) {
+                        $('#parents_detailzzz').html(data);
+                        //alert(data);
+                    }
+                });
+
                 $('#surname').val($(this).data('surname'));
                 $('#fname').val($(this).data('firstname'));
                 $('#other_name').val($(this).data('othername'));
@@ -791,19 +730,68 @@
                     },
 
                     success:function (data) {
-                        $('#studentsTable').ajax.reload();
-                        alert('Record has been updated successfully');
+                            if(data.status === 200)
+                                $('#studentsTable').ajax.reload();
+                                $('#editModal').modal('hide');
+                                $('.alert').remove();
+                                alert('Record has been updated successfully. Refresh Page');
+                                 //toastr.success("Record saved");
                     },
-                    error:function (data) {
+
+                    error: function (xhr) {
+                        alert('There is an error. check the form again');
                         $('#validation-errors').html('');
-                        $.each(responseJSON.errors,function (key,value) {
-                            $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div>');
-                        })
-                    }
+                        $.each(xhr.responseJSON.message, function(key,value) {
+                            $('#validation-errors').append('<div class="alert alert-danger">'+value+'</div');
+                        });
+                    },
                 });
             });
 
         });
+
+        //add parent logic
+        $(document).ready(function () {
+            $(document).on('click','.parent_submit',function () {
+                $.ajax({
+                    type:'post',
+                    url:'/parents',
+                    data:{
+                        'existing_parent_phone':$('input[name=existing_parent_phone]').val(),
+
+                        '_token':$('input[name=_token]').val(),
+                        'student_id':$('input[name=parent_student_id]').val(),
+                       'parent_category':$('#parent_category option:selected').val(),
+
+                        'parent_one':$('input[name=one_parent_name]').val(),
+                        'one_occupation':$('input[name=one_occupation]').val(),
+                        'one_residential':$('input[name=one_residential]').val(),
+                        'one_address':$('input[name=one_address]').val(),
+                        'one_contact':$('input[name=one_contact]').val(),
+
+                        'two_parent':$('input[name=two_parent]').val(),
+                        'two_residential':$('input[name=two_residential]').val(),
+                        'two_address':$('input[name=two_address]').val(),
+                        'two_contact':$('input[name=two_contact]').val(),
+                        'two_occupation':$('input[name=two_occupation]').val()
+                    },
+
+                    success:function (data) {
+                        $('#parentModal').modal('hide');
+                        alert('New Record has been saved successsfully');
+                    },
+
+                    error: function (xhr) {
+                        alert('There is an error. check the form again');
+                        $('#parent_validation-errors').html('');
+                        $.each(xhr.responseJSON.message, function(key,value) {
+                            $('#parent_validation-errors').append('<div class="alert alert-danger">'+value+'</div');
+                        });
+                    },
+                });
+            });
+        });
+
 
     </script>
 
