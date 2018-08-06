@@ -162,13 +162,12 @@ class TeachersController extends Controller
     public function destroy(Request $request)
     {
         $teacher_id = $request->input('delete_teacher');
-        $teacher = Teachers::where('user_id', $teacher_id);
+        // return ['teacher_id'=>$teacher_id];
+        $teacher = Teachers::find($teacher_id);
+        $teacher->delete();
 
-        if($teacher->delete()){
-            $user = Users::where('id', $teacher_id);
-            $user->delete();
-        }
-
-        return redirect('/viewTeachers')->with('success', 'Details deleted Successfully');
+        $msg = "No teacher exists";
+        
+        return redirect('/viewTeachers')->with('success', 'Details deleted Successfully')->with($msg);
     }
 }

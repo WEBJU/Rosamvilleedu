@@ -64,14 +64,20 @@
                               <td>
                                 <button 
                                   class="btn btn-info"
-                                  type="button"                                 
+                                  type="button"
+                                  data-fees_id="{{$fees->id}}"
+                                  data-student_surname = "{{$students->student_surname}}"
+                                  data-student_fname="{{$students->student_firstname}}" 
+                                  data-student_lname="{{$students->student_other_name}}"
+                                  data-student_class="{{$classes->class_name}}"
+                                  data-amount_paid="{{$fees->amount_paid}}"
+                                  data-date_paid= "{{$fees->date_paid}}"
+                                  data-balance="{{$fees->balance}}"                                
                                   data-toggle="modal" 
                                   data-target="#editFeeModal">Edit</button>                              
                               </td>
                               <td>
-                              <form>
-                                @csrf
-                                <input type="hidden" name="print_fees">
+                              
                                 <button class="btn btn-secondary m-1">Print Receipt</button>
                               </form>
                               </td>                             
@@ -85,6 +91,7 @@
             @endif          
         </tbody>
         </table>
+
         <!--Edit modal-->
         <div class="modal modal fade" id="editFeeModal" role="dialog">
             <div class="modal-dialog">
@@ -95,11 +102,11 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>    
                     <div class="modal-body">
-                    <form class="form-horizontal" action="/feeDetails/update" method="POST">
+                    <form class="form-horizontal" action="/feeDetails/update/{{$fees->id}}" method="POST">
                         @csrf
                         <div class="card-body">
                             <p class="text-info">Fees Information</p>
-                            <input type="hidden" name="teacher_id" id="teacher_id" value="">
+                            <input type="hidden" name="fees_id" id="fees_id" value="{{$fees->id}}">
                             <div class="form-group">                                
                                 <label for="surname" class="col-sm-2 control-label">Surname</label>
                                 <div class="col-sm-10">                                    
@@ -156,9 +163,29 @@
         </div>
          <!--jquery-->
     <script>
-      $('#editTeacherModal').on('show.bs.modal', function(event){
+      $('#editFeeModal').on('show.bs.modal', function(event){
+        var button = $(event.relatedTarget)// button that triggered the modal
+        var fees_id = button.data('fees_id')
+        var student_surname = button.data('student_surname') //Extra info from data.* attr
+        var student_fname = button.data('student_fname') //Extra info from data.* attr
+        var student_lname = button.data('student_lname') //Extra info from data.* attr
+        var student_class = button.data('student_class') //Extra info from data.* attr
+        var amount_paid = button.data('amount_paid')
+        var date_paid = button.data('date_paid') //Extra info from data.* attr   
+        var balance = button.data('balance') //Extra info from data.* attr       
+
+        var modal = $(this)
+        modal.find('.modal-body #fees_id').val(fees_id)
+        modal.find('.modal-body #student_surname').val(student_surname)
+        modal.find('.modal-body #student_fname').val(student_fname)
+        modal.find('.modal-body #student_lname').val(student_lname)
+        modal.find('.modal-body #student_class').val(student_class)
+        modal.find('.modal-body #amount_paid').val(amount_paid)
+        modal.find('.modal-body #date_paid').val(date_paid)
+        modal.find('.modal-body #balance').val(balance)
 
        
       })
+    </script>
      
   @endsection

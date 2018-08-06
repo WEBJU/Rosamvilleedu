@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Users;
+use App\Teachers;
 
 class UsersController extends Controller
 {
@@ -102,8 +103,20 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->input('delete_users');
+        $user = Users::find($id);
+        $teacher_id = $user->id;
+        $teach = Teachers::find($teacher_id);
+
+        if($teach->user_id == $user->id){
+            // return ['teacher_id'=>$teach->user_id, 'user_id'=>$user->id];
+            $user->delete();
+            $teach->delete();
+        }
+
+        return redirect('/userDetails')->with('success', 'Details deleted Successfully');
+        
     }
 }

@@ -20,11 +20,17 @@ Route::get('/dashboard','DashboardController@index');
 // route to add student to the databse
 Route::get('/addStudent','StudentsController@create');
 Route::get('/viewStudent','StudentsController@index');//show all students
-Route::get('/addparent/existing_parents/{id}','StudentsController@all_parents');//add existing parent
 Route::post('/registerStudent','StudentsController@store');//store new student information
-Route::get('/searchStudent','StudentsController@search');
-Route::post('/student/delete','StudentsController@destroy');
-Route::post('/updateStudent','StudentsController@update');
+Route::get('/searchStudent','StudentsController@search');//search for a student name
+Route::post('/student/delete','StudentsController@destroy');//delete a student
+Route::post('/updateStudent','StudentsController@update');//delete student record
+Route::get('/student/parent_info','StudentsController@parentInfo');//get the parents information
+
+//parents
+Route::post('/parents','ParentsController@store');//store parent child relationship
+Route::get('/allParents/','ParentsController@show_all');//View all parents
+Route::get('/searchParent','ParentsController@search');//search by use of parent name
+Route::post('/updateParent','ParentsController@update');//update record
 //Route::get('/searchStudent/','StudentsController@searchForm');
 
 // // route to add teachers to the databse
@@ -66,7 +72,7 @@ Route::get('/saveSubject','SubjectsController@store');
 // route to add Exam to the databse
  // Route::get('/addExam','ExamsController@create');//show form for creating exam
 // Route::get('/viewExamDetails','ExamsController@index');//displays exams
-  Route::post('/saveExam','ExamsController@store');//store exam
+Route::post('/saveExam','ExamsController@store');//store exam
 // Route::get('/edit/{$id}',[
 //   'uses'=>'ExamsController@edit'
 // ]);
@@ -79,7 +85,7 @@ Route::get('/addResults','ExamsController@addResult');
 // route to add fees details to the databse
 Route::post('/addFees/store','FeesController@store');
 // route to edit and update fees detils
-Route::post('/feeDetails/update/{student_id}','FeesController@update');
+Route::post('/feeDetails/update/{fees_id}','FeesController@update');
 //route to view the fee page
 Route::get('/addFees','FeesController@create');
 
@@ -98,6 +104,8 @@ Route::get('/addUser','UsersController@create');
 Route::post('/addUser/store','UsersController@store');
 //route to view user details
 Route::get('/userDetails','UsersController@index');
+//route to delete user details
+Route::post('/userDetails/destroy','UsersController@destroy');
 // Route::resouce('/','UsersController@create');
 Route::resource('class','ClassController');
 // Route::get();

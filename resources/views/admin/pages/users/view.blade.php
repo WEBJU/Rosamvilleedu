@@ -30,14 +30,21 @@
       </thead>
       <tbody>
         @if(count($user) > 0)
-            @foreach($user as $us)
+            @foreach($user as $users)
                 <tr>
-                    <td>{{$us->sur_name}}</td>
-                    <td>{{$us->first_name}}</td>
-                    <td>{{$us->last_name}}</td>
-                    <td>{{$us->national_id}}</td>
-                    <td>{{$us->email}}</td>
-                    <td>{{$us->phone_no}}</td>
+                    <td>{{$users->sur_name}}</td>
+                    <td>{{$users->first_name}}</td>
+                    <td>{{$users->last_name}}</td>
+                    <td>{{$users->national_id}}</td>
+                    <td>{{$users->email}}</td>
+                    <td>{{$users->phone_no}}</td>
+                    <td>
+                      <form action="/userDetails/destroy" method="POST">
+                        @csrf
+                        <input type="hidden" name="delete_users" value="{{$users->id}}">
+                        <button class="btn btn-danger m-1">DELETE</button>
+                      </form>
+                    </td>
                 </tr>
             @endforeach
         @endif
