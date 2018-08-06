@@ -82,7 +82,7 @@ class ExamsController extends Controller
         $exam=Exam::find($id);
         return view('admin.pages.exam.edit_exam',compact('exam','id'));
     }
-
+ 
     /**
      * Update the specified resource in storage.
      *

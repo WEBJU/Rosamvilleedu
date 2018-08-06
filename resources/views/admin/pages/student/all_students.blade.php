@@ -27,8 +27,7 @@
                 </form>
             </div>
             <div class="col-lg-2">
-                <a href="/addparent/existing_parents/1">All parents</a>
-                <a href="/student/parent_info">Parents</a>
+                <a href="/allParents/">All parents</a>
             </div>
         </div>
 
@@ -138,7 +137,7 @@
                 </tbody>
 
             </table>
-
+            {{$students->links()}}
 
         </div>
 
@@ -537,18 +536,21 @@
                     <div class="collapse" id="parent_info"><br>
                         <h4>Parents Information</h4>
                         <div id="">
-                            <P id="parents_detailzzz">s</P>
+                            <P id="parents_detailzzz">Loading Parent's Data please wait</P>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <!--
-                    <div class="form-group m-2">
-                        <button  type="button"  class="edit_button btn btn-primary mb-2" id="edit_button">Print Details</button>
-                    </div>-->
 
-                    <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <div class="form-group ">
+                        <button  type="button"  class="edit_button btn btn-primary" id="pdf_button">Generate Parent's PDF Report</button>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -792,11 +794,32 @@
             });
         });
 
+        //generate pdf file
+        $(document).ready(function(){
+           var doc = new jsPDF();
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+
+           $('#pdf_button').click(function () {
+              //alert('creating pdf');
+               doc.fromHTML($('#parent_info').html(), 15, 15, {
+                   'width': 170,
+                   'elementHandlers': specialElementHandlers
+               });
+               doc.save('sample-file.pdf');
+           });
+        });
 
     </script>
 
     <script type="text/javascript">
         $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     </script>
+
+    <!--generate reports-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 
 @endsection

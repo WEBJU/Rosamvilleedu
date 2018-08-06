@@ -49,6 +49,21 @@ class ExpendituresController extends Controller
         $expenditure->save();
         return redirect()->back()->with('success','Expenditure created successfully');
     }
+    /**
+     * displays expenditures report
+     .
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function chart(){
+        
+        $expenditure=Expenditure::all();
+        return response()->json($expenditure);
+//        return view('admin.pages.expenditures.expenditure_report')->with('expenditure',$expenditure);
+        
+    }
 
     /**
      * Display the specified resource.
