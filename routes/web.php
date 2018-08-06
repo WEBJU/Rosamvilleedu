@@ -114,3 +114,5 @@ Route::get('/viewSubjectDetails','SubjectsController@index');
 // Route::get('/expenditureDetails','ExpendituresController@index');
 //route to delete
 Route::get('delete/{class_id}',['uses'=>'ClassController@delete','as'=>'delete-class']);
+//expenditure report
+Route::get('/expenditure/chart','ExpendituresController@chart');
