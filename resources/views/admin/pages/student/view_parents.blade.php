@@ -53,7 +53,7 @@
                 </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="studentsTable1">
                 @foreach($parents as $parent)
                     <tr class="parent{{$parent->id}} table-hover">
                         <td>{{$parent->parent_name}}</td>
@@ -101,7 +101,7 @@
 
     <!--Edit modal-->
     <div class="modal fade" id="editModal" role="dialog">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <!--modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -119,7 +119,7 @@
                         <input type="hidden" value="" name="parent_id" id="parent_id">
 
                         <div class="form-group">
-                            <label class="parent_name control-label" id="parent_name">Guardian/Parent Name</label>
+                            <label class="parent_name control-label" id="parent_label_name">Guardian/Parent Name</label>
                             <input type="text" class="form-control" id="parent_name" placeholder="Name" name="one_parent_name">
                         </div>
 
@@ -219,6 +219,11 @@
                         $('#editModal').modal('hide');
                         $('.alert').remove();
                         alert('Record has been updated successfully. Refresh Page');
+                        //reload table
+                        //$('#studentsTable1').DataTable().ajax().reload();
+                        var data_table = $('#studentsTable').DataTable();
+                        //data_table.ajax().reload();
+                        alert(data_table);
                         //toastr.success("Record saved");
                     },
 

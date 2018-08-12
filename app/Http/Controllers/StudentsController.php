@@ -125,14 +125,27 @@ class StudentsController extends Controller
                         '</td>'.
 
                         '<td>'.
-                            '<a href="#"
-                                   class="delete_student btn btn-danger m-1"
-                                   id="delete_student"
+                        '<a href="#"
+                                   class="student_details btn btn-secondary m-1"
+                                   id="edit_student"
                                    data-id="'.$student->id.'"
-                                   data-name="'.$student->student_surname.' '.$student->student_firstname.' '.$student->student_other_name.'"
-                                >Delete</a>'.
+                                   data-surname="'.$student->student_surname.'"
+                                   data-firstname="'.$student->student_firstname.'"
+                                   data-othername="'.$student->student_other_name.'"
+                                   data-student_class="'.$student->student_class.'"
+                                   data-dob = "'.$student->student_date_of_birth.'"
+                                   data-religion = "'.$student->student_religion.'"
+                                   data-medical = "'.$student->student_medical_info.'"
+                                   data-schools = "'.$student->primary_school_attended.'"
+                                   data-siblings = "'.$student->student_number_of_siblings.'"
+                                   data-emergency = "'.$student->emergency_name.'"
+                                   data-relationship = "'.$student->emergency_relationship.'"
+                                   data-emergency_contact = "'.$student->emergency_contact.'"
+                                   data-class_name = "'.$student->student_class.'"
+                                   data-class_id = "'.$student->class_id.'"
+                                >More Details</a>'.
 
-                            '<a href="#"
+                        '<a href="#"
                                    class="student_edit btn btn-info m-1"
                                    id="edit_student"
                                    data-id="'.$student->id.'"
@@ -152,25 +165,12 @@ class StudentsController extends Controller
                                    data-class_id = "'.$student->class_id.'"
                                 >Edit</a>'.
 
-                        '<a href="#"
-                                   class="student_details btn btn-info"
-                                   id="edit_student"
+                            '<a href="#"
+                                   class="delete_student btn btn-danger m-1"
+                                   id="delete_student"
                                    data-id="'.$student->id.'"
-                                   data-surname="'.$student->student_surname.'"
-                                   data-firstname="'.$student->student_firstname.'"
-                                   data-othername="'.$student->student_other_name.'"
-                                   data-student_class="'.$student->student_class.'"
-                                   data-dob = "'.$student->student_date_of_birth.'"
-                                   data-religion = "'.$student->student_religion.'"
-                                   data-medical = "'.$student->student_medical_info.'"
-                                   data-schools = "'.$student->primary_school_attended.'"
-                                   data-siblings = "'.$student->student_number_of_siblings.'"
-                                   data-emergency = "'.$student->emergency_name.'"
-                                   data-relationship = "'.$student->emergency_relationship.'"
-                                   data-emergency_contact = "'.$student->emergency_contact.'"
-                                   data-class_name = "'.$student->student_class.'"
-                                   data-class_id = "'.$student->class_id.'"
-                                >More Details</a>'.
+                                   data-name="'.$student->student_surname.' '.$student->student_firstname.' '.$student->student_other_name.'"
+                                >Delete</a>'.
 
                         '</td>'.
                         '</tr>';

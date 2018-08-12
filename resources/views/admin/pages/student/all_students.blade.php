@@ -83,35 +83,6 @@
                             </td>
 
                             <td>
-                                <!--delete-->
-                                <a href="#"
-                                   class="delete_student btn btn-danger m-1"
-                                   id="delete_student"
-                                   data-id="{{$student->id}}"
-                                   data-name="{{$student->student_surname." ".$student->student_firstname." ".$student->student_other_name}}"
-                                >Delete</a>
-
-                                <!--edit-->
-                                <a href="#"
-                                   class="student_edit btn btn-info"
-                                   id="edit_student"
-                                   data-id="{{$student->id}}"
-                                   data-surname="{{$student->student_surname}}"
-                                   data-firstname="{{$student->student_firstname}}"
-                                   data-othername="{{$student->student_other_name}}"
-                                   data-student_class="{{$student->student_class}}"
-                                   data-dob = "{{$student->student_date_of_birth}}"
-                                   data-religion = "{{$student->student_religion}}"
-                                   data-medical = "{{$student->student_medical_info}}"
-                                   data-schools = "{{$student->primary_school_attended}}"
-                                   data-siblings = "{{$student->student_number_of_siblings}}"
-                                   data-emergency = "{{$student->emergency_name}}"
-                                   data-relationship = "{{$student->emergency_relationship}}"
-                                   data-emergency_contact = "{{$student->emergency_contact}}"
-                                   data-class_name = "{{$student->student_class}}"
-                                   data-class_id = "{{$student->class_id}}"
-                                >Edit</a>
-
                                 <!--Details-->
                                 <a href="#"
                                    class="student_details btn btn-secondary m-1"
@@ -131,6 +102,36 @@
                                    data-class_name = "{{$student->student_class}}"
                                    data-class_id = "{{$student->student_id}}"
                                 >More Details</a>
+
+                                <!--edit-->
+                                <a href="#"
+                                   class="student_edit btn btn-info m-1"
+                                   id="edit_student"
+                                   data-id="{{$student->id}}"
+                                   data-surname="{{$student->student_surname}}"
+                                   data-firstname="{{$student->student_firstname}}"
+                                   data-othername="{{$student->student_other_name}}"
+                                   data-student_class="{{$student->student_class}}"
+                                   data-dob = "{{$student->student_date_of_birth}}"
+                                   data-religion = "{{$student->student_religion}}"
+                                   data-medical = "{{$student->student_medical_info}}"
+                                   data-schools = "{{$student->primary_school_attended}}"
+                                   data-siblings = "{{$student->student_number_of_siblings}}"
+                                   data-emergency = "{{$student->emergency_name}}"
+                                   data-relationship = "{{$student->emergency_relationship}}"
+                                   data-emergency_contact = "{{$student->emergency_contact}}"
+                                   data-class_name = "{{$student->student_class}}"
+                                   data-class_id = "{{$student->class_id}}"
+                                >Edit</a>
+
+                                <!--delete-->
+                                <a href="#"
+                                   class="delete_student btn btn-danger m-1"
+                                   id="delete_student"
+                                   data-id="{{$student->id}}"
+                                   data-name="{{$student->student_surname." ".$student->student_firstname." ".$student->student_other_name}}"
+                                >Delete</a>
+
                             </td>
                         </tr>
                     @endforeach
@@ -307,110 +308,115 @@
                         <input type="hidden" value="" name="student_id" id="edit_id">
                         <div class="card-body">
                             <p class="text-info">Student Information</p>
-                            <div class="form-group">
-                                <label for="surname" class="col-sm-2 control-label">Surname</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="surname"class="form-control" id="edit_surname" placeholder="Surname">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="fname" class="col-sm-2 control-label">First Name</label>
 
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="first_name" id="edit_fname" placeholder="First Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="other_name" class="col-sm-2 control-label">Other Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="edit_other_name" placeholder="edit_Other Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="other_name" class="col-sm-2 control-label">Pick date of Birth</label>
-                                <div class="input-group date" data-provide="datepicker">
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="edit_Date_of_Birth" id="edit_dob">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+                                            <label for="surname" class="control-label">Surname</label>
+                                            <input type="text" name="surname"class="form-control" id="edit_surname" placeholder="Surname" value="{{old('surname')}}" required>
+                                        </div>
                                     </div>
-                                    <span class="input-group-addon">
-                                <span class="fa fa-calender"></span>
-                            </span>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Select Religion</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" id="edit_select_religion">
-                                        <option value="" id="edit_religion"></option><!--The current-->
-                                        <option value="Christian">Christian</option>
-                                        <option value="Hindu">Hindu</option>
-                                        <option value="Muslim">Muslim</option>
-                                        <option value="Others">other</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Primary/School Attended</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="school_attended" class="form-control" id="edit_former_school" placeholder="Primary/School Attended">
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label>Number of Siblings</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control m-2" name="boys" id="edit_boys" placeholder="Number of Siblings" >
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+                                            <label for="fname" class="control-label">First Name</label>
+                                            <input type="text" class="form-control" name="first_name" id="edit_fname" placeholder="First Name" value="{{old('first_name')}}" required>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label>Emergency Contact Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="emergency_name" id="edit_emergency_contact" placeholder="Name of Emergency Contact" value="{{old('emergency_name')}}" required>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+                                            <label for="other_name" class="control-label">Other Name</label>
+                                            <input type="text" class="form-control" name="other_name" id="edit_other_name" placeholder="Other Name" value="{{old('other_name')}}" required>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </div><br><hr>
 
-                            <div class="form-group">
-                                <label>Emergency Contact Phone</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="emergency_phone" id="edit_emergency_phone" placeholder="Phone of Emergency Contact" value="{{old('emergency_phone')}}" required>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <label for="Date_of_Birth" class=" control-label">Pick date of Birth</label>
+                                            <input type="date" class="form-control" id="edit_dob" name="Date_of_Birth" placeholder="Date Of birth" value="{{old('Date_of_Birth')}}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label for="religion" class="control-label">Select Religion</label>
+                                            <select class="form-control" id="edit_select_religion">
+                                                <option value="" id="edit_religion"></option><!--The current-->
+                                                <option value="Christian">Christian</option>
+                                                <option value="Hindu">Hindu</option>
+                                                <option value="Muslim">Muslim</option>
+                                                <option value="Others">other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label for="school_attended" class=" control-label">Primary/School Attended</label>
+                                            <input type="text" name="school_attended" class="form-control" id="edit_former_school" placeholder="Primary/School Attended" value="{{old('school_attended')}}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class=" control-label">Number of Siblings</label>
+                                            <input type="number" class="form-control" name="siblings" id="edit_boys" placeholder="Number of Siblings" value="{{old('siblings')}}" required>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label>Relationship of Student With Emergency Contact</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="emergency_relationship" id="edit_emergency_relationship" placeholder="Relationship Between Student and Emergency Contact" value="{{old('emergency_relationship')}}" required>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class="control-label">Emergency Contact Name</label>
+                                            <input type="text" class="form-control" name="emergency_name" id="edit_emergency_contact" placeholder="Name of Emergency Contact" value="{{old('emergency_name')}}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class="control-label">Emergency Contact Phone</label>
+                                            <input type="number" class="form-control" name="emergency_phone" id="edit_emergency_phone" placeholder="Phone of Emergency Contact" value="{{old('emergency_phone')}}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class=" control-label">Relationship of Student With Emergency Contact</label>
+                                            <input type="text" class="form-control" name="emergency_relationship" id="edit_emergency_relationship" placeholder="Relationship Between Student and Emergency Contact" value="{{old('emergency_relationship')}}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class="control-label">Select a Class</label>
+                                            <select name="class_id" id="random" class="form-control">
+                                                <option value="" id="edit_class"></option>
+                                                @foreach($all_classes as $class)
+                                                    <option value="{{$class->id}}">{{$class->class_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </div><br><hr>
 
-                            <div class="form-group">
-                                <label>Select a Class</label>
-                                <div class="col-sm-10">
-                                    <select name="class_id" id="random" class="form-control">
-                                        <option value="" id="edit_class"></option>
-                                        @foreach($all_classes as $class)
-                                            <option value="{{$class->id}}">{{$class->class_name}}</option>
-                                        @endforeach
-                                    </select>
-
-                                    <!--
-                                    <select name="class_id" class="edit_class form-control">
-                                            <option value="" id="edit_class"></option>
-                                        @foreach($all_classes as $class)
-                                            <option value="{{$class->id}}">{{$class->class_name}}</option>
-                                        @endforeach
-                                    </select>-->
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <label>Relevant medical information(Please indicate if he/she suffers from any disease)</label>
                                 <textarea class="form-control"name="medical_info" rows="5" id="edit_medical_info"></textarea>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
 
@@ -441,87 +447,102 @@
                 <div class="modal-body">
                     <button class="btn btn-primary btn-lg" data-toggle="collapse" data-target="#student_info">Student Information</button>
                     <button class="btn btn-primary btn-lg" data-toggle="collapse" data-target="#parent_info">Parents information</button>
-
                     <form class="form-horizontal collapse" enctype="multipart/form-data" method="post" id="student_info">
+
                         <div class="card-body">
                             <p class="text-info">Student Information</p>
-                            <div class="form-group">
-                                <label for="surname" class="col-sm-2 control-label">Surname</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="surname"class="form-control" id="surname" placeholder="Surname" value="" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="fname" class="col-sm-2 control-label">First Name</label>
 
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="first_name" id="fname" placeholder="First Name" value="" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="other_name" class="col-sm-2 control-label" readonly="" value="">Other Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="other_name" placeholder="Other Name" readonly value="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="other_name" class="col-sm-2 control-label">Pick date of Birth</label>
-                                <div class="input-group date" data-provide="datepicker">
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="Date_of_Birth" id="dob" readonly value="">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+                                            <label for="surname" class="control-label">Surname</label>
+                                            <input type="text" name="surname"class="form-control" id="surname" placeholder="Surname" value="{{old('surname')}}" readonly>
+                                        </div>
                                     </div>
-                                    <span class="input-group-addon">
-                                <span class="fa fa-calender"></span>
-                            </span>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="" class="col-sm-2 control-label">Select Religion</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="religion" id="select_religion" readonly value="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Primary/School Attended</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="school_attended" class="form-control" id="former_school" placeholder="Primary/School Attended" readonly value="">
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label>Number of Siblings</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control m-2" name="boys" id="boys" placeholder="Number of Siblings" readonly value="">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+                                            <label for="fname" class="control-label">First Name</label>
+                                            <input type="text" class="form-control" name="first_name" id="fname" placeholder="First Name" value="{{old('first_name')}}" readonly>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label>Emergency Contact Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="emergency_name" id="emergency_contact" placeholder="Name of Emergency Contact" value="{{old('emergency_name')}}" readonly>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <div class="col-sm-8">
+                                            <label for="other_name" class="control-label">Other Name</label>
+                                            <input type="text" class="form-control" name="other_name" id="other_name" placeholder="Other Name" value="{{old('other_name')}}" readonly>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </div><br><hr>
 
-                            <div class="form-group">
-                                <label>Emergency Contact Phone</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="emergency_phone" id="emergency_phone" placeholder="Phone of Emergency Contact" value="{{old('emergency_phone')}}" readonly>
-                                </div>
-                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <label for="Date_of_Birth" class=" control-label">Pick date of Birth</label>
+                                            <input type="date" id="dob" class="form-control" name="Date_of_Birth" placeholder="Date Of birth" value="{{old('Date_of_Birth')}}" readonly>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <label>Relationship of Student With Emergency Contact</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="emergency_relationship" id="emergency_relationship" placeholder="Relationship Between Student and Emergency Contact" value="{{old('emergency_relationship')}}" readonly>
-                                </div>
-                            </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label for="religion" class="control-label">Select Religion</label>
+                                            <input type="text" name="view_religion" class="form-control" id="select_religion" placeholder="Primary/School Attended" value="{{old('school_attended')}}" readonly>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <label>Class</label>
-                                <div class="col-sm-10">
-                                    <input type="text" readonly class="form-control" name="class" id="view_class">
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label for="school_attended" class=" control-label">Primary/School Attended</label>
+                                            <input type="text" name="school_attended" class="form-control" id="former_school" placeholder="Primary/School Attended" value="{{old('school_attended')}}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class=" control-label">Number of Siblings</label>
+                                            <input type="number" class="form-control" name="siblings" id="boys" placeholder="Number of Siblings" value="{{old('siblings')}}" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class="control-label">Emergency Contact Name</label>
+                                            <input type="text" class="form-control" name="emergency_name" id="emergency_contact" placeholder="Name of Emergency Contact" value="{{old('emergency_name')}}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class="control-label">Emergency Contact Phone</label>
+                                            <input type="number" class="form-control" name="emergency_phone" id="emergency_phone" placeholder="Phone of Emergency Contact" value="{{old('emergency_phone')}}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class=" control-label">Relationship of Student With Emergency Contact</label>
+                                            <input type="text" class="form-control" name="emergency_relationship" id="emergency_relationship" placeholder="Relationship Between Student and Emergency Contact" value="{{old('emergency_relationship')}}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label class="control-label">Class</label>
+                                            <input type="text" class="form-control" name="view_class_name" id="view_class" placeholder="Other Name" value="{{old('other_name')}}" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <hr>
 
                             <div class="form-group">
                                 <label>Relevant medical information(Please indicate if he/she suffers from any disease)</label>
@@ -734,9 +755,9 @@
                     success:function (data) {
                             if(data.status === 200)
                                 $('#studentsTable').ajax.reload();
+                                alert('Record has been updated successfully. Refresh Page');
                                 $('#editModal').modal('hide');
                                 $('.alert').remove();
-                                alert('Record has been updated successfully. Refresh Page');
                                  //toastr.success("Record saved");
                     },
 
