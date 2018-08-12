@@ -131,7 +131,8 @@ class TeachersController extends Controller
         $id = $request->input('teacher_id');
         $teacher = Teachers::find($id);
         $user = Users::find($id);
-        $clas = classess::find($id);
+        $class_id = $teacher->user_id;
+        $clas = classess::find($class_id);
 
         if($teacher->user_id == $user->id){
             $user->sur_name = $request->input('teacher_surname');

@@ -47,9 +47,9 @@
                   @foreach($all_students as $students)
                     @if(count($all_classes) > 0)
                       @foreach($all_classes as $classes)
-                        @if($fees->student_id == $students->id)
+                        @if($fees->student_id == $students->id && $classes->id == $students->class_id)
                           <tr>
-                              <td>{{$students->student_surname}} {{$students->student_firstname}} {{$students->student_other_name}}</td>
+                              <td>{{$students->student_surname}} {{$students->student_firstname}} {{$students->student_other_name}}</td>                             
                               <td>{{$classes->class_name}}</td>
                               <td>{{$fees->amount_paid}}</td>
                               <td>{{$fees->date_paid}}</td>

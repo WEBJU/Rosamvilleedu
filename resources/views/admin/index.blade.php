@@ -478,7 +478,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/spenditureReport" class="nav-link">
+            <a href="/expenditure/chart" class="nav-link">
               <i class="nav-icon fa fa-circle-o text-warning"></i>
               <p>Expenditure Report</p>
             </a>
@@ -511,6 +511,8 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
+{{-- chartjs      --}}
+<script src="/plugins/chart.js/Chart.bundle.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Morris.js charts -->
