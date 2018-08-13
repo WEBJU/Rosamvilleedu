@@ -110,6 +110,52 @@ class ParentsController extends Controller
         }
     }
 
+    //search for parent name and return to students
+    public function searchParent(Request $request){
+        if($request->ajax()){
+            $output = "";
+            $search_name = request('search');
+            //check if its empty
+            if(empty($search_name)){
+                //$parents = parents::all();
+                //$parents = parents::paginate(20);
+            }else{
+                $parents = parents::where('parent_name','like','%'.$search_name.'%')->paginate(20);
+            }
+
+            //retrieve the information
+            if($parents){
+                foreach ($parents as $parent){
+                    //display the output
+                    $output = '<tr class="parent{{$parent->id}} table-hover">'.
+                        '<td>'.$parent->parent_name.'</td>'.
+                        '<td>'.$parent->parent_phone_no.'</td>'.
+                        '<td>'.$parent->parent_residence.'</td>'.
+
+                        '<td>'.
+                        '<a href="#"
+                               class="guardian_search btn btn-lg btn-success"
+                               id="par_search_results"
+                               data-id="'.$parent->id.'"
+                               data-name="'.$parent->parent_name.'"
+                               data-occupation="'.$parent->parent_occupation.'"
+                               data-residence="'.$parent->parent_residence.'"
+                               data-address="'.$parent->parent_address.'"
+                               data-phone="'.$parent->parent_phone_no.'"
+                            >Select</a>'.
+                        '</td>'.
+
+                    '</tr>';
+
+                    echo $output;
+                }
+            }else{
+                $output = '<tr><td align="center" colspan="7">No Data found</td></tr>';
+                echo $output;
+            }
+        }
+    }
+
     //erase data
     public function delete(){
 

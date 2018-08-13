@@ -79,7 +79,7 @@
                                    id="new_parent"
                                    data-id="{{$student->id}}"
                                    data-parent="{{$student->parent_count}}"
-                                > Add parent </a>
+                                > Add parent {{$student->parent_count}}</a>
                             </td>
 
                             <td>
@@ -180,11 +180,50 @@
                         <input type="hidden" value="" name="parent_student_id" id="parent_student_id">
 
                          <div id="existing_parent">
-                             <label>Enter parent phone number</label>
+
+                             <label>Enter parent name</label>
                              <div class="form-group">
-                                <input type="number" class="form-control" id="existing_parent_phone" name="existing_parent_phone" required>
+                                 <input type="text" class="form-control" id="parent_search_query" name="existing_parent_search"  placeholder="Search Parent name" required>
                              </div>
-                             <p></p>
+
+                             <!--collapse the search-->
+                             <a data-toggle="collapse" href="#parent_results" class="btn btn-primary">Show / Hide Search Results</a>
+
+                             <!--Parents search results-->
+                             <div id="parent_results" class="collapse in">
+                                 <table class="table table-striped table-hover">
+                                     <tr>
+                                         <th>Parent Name</th>
+                                         <th>Phone Number</th>
+                                         <th>Residence</th>
+                                         <th>Select</th>
+                                     </tr>
+
+                                     <tbody id="existing_parents_search">
+
+                                     </tbody>
+                                 </table>
+                             </div>
+
+                             <hr>
+
+                             <div class="panel panel-default">
+                                 <h4><center>Confirm Selected Parent Details</center></h4>
+                                 <label>Enter parent name</label>
+                                 <div class="form-group">
+                                     <input type="text" class="form-control" id="existing_parent_name" name="existing_parent_name" readonly>
+                                 </div>
+
+                                 <label>Phone</label>
+                                 <div class="form-group">
+                                     <input type="text" class="form-control" id="existing_parent_phone" name="existing_parent_phone" readonly>
+                                 </div>
+
+                                 <label>Residence</label>
+                                 <div class="form-group">
+                                     <input type="text" class="form-control" id="existing_parent_residence" name="existing_parent_residence" readonly>
+                                 </div>
+                             </div>
                          </div>
 
                         <div id="oneForm">
@@ -649,6 +688,15 @@
             });
         });
 
+        //add data to existing parent
+        $(document).ready(function () {
+            $(document).on('click','.guardian_search',function () {
+                $('#existing_parent_name').val($(this).data('name'));
+                $('#existing_parent_phone').val($(this).data('phone'));
+                $('#existing_parent_residence').val($(this).data('residence'));
+            });
+        });
+
         //launch the delete modal
         $(document).ready(function () {
            $(document).on('click','.delete_student',function () {
@@ -714,7 +762,7 @@
             });
         });
 
-        //live search
+        //live search students
         $(document).ready(function () {
             $('#search_query').keyup(function () {
                 $value = $(this).val();
@@ -723,7 +771,25 @@
                     url:'/searchStudent',
                     data:{'search':$value},
                     success:function (data) {
-                        $('tbody').html(data);
+                        $('#studentsTable').html(data);
+                    }
+                });
+            });
+        });
+
+        //live search parents name
+        $(document).ready(function () {
+            $('#parent_search_query').keyup(function () {
+                $value = $(this).val();
+                $.ajax({
+                    type:'get',
+                    url:'/searchParentStudent',
+                    data:{
+                        'search':$value,
+                        'student_id':$('#parent_student_id').val()
+                    },
+                    success:function (data) {
+                        $('#existing_parents_search').html(data);
                     }
                 });
             });

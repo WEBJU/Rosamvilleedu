@@ -17,7 +17,7 @@ Route::get('/', function () {
 //route to the main dashboard
 Route::get('/dashboard','DashboardController@index');
 
-// route to add student to the databse
+// route to add student to the database
 Route::get('/addStudent','StudentsController@create');
 Route::get('/viewStudent','StudentsController@index');//show all students
 Route::post('/registerStudent','StudentsController@store');//store new student information
@@ -31,6 +31,7 @@ Route::post('/parents','ParentsController@store');//store parent child relations
 Route::get('/allParents/','ParentsController@show_all');//View all parents
 Route::get('/searchParent','ParentsController@search');//search by use of parent name
 Route::post('/updateParent','ParentsController@update');//update record
+Route::get('/searchParentStudent','ParentsController@searchParent');//search parent name and return certain details in students
 //Route::get('/searchStudent/','StudentsController@searchForm');
 
 // // route to add teachers to the databse
