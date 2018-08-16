@@ -26,24 +26,29 @@
                         <input type="text" name="class_name"class="form-control" id="class_name" placeholder="Class Name">
                       </div>
                     </div>
+
                     <div class="form-group">
                       <label for="fname" class="col-sm-2 control-label">Capacity</label>
                       <div class="col-sm-10">
                         <input type="number" class="form-control" name="class_capacity" id="fname" placeholder="Capacity">
                       </div>
                     </div>
+
+                      <!--
                     <div class="form-group">
                       <label for="other_name" class="col-sm-2 control-label">Class Prefect</label>
                       <div class="col-sm-10">
                         <input type="text" name="class_prefect" class="form-control" id="class_prefect" placeholder="Class Prefect">
                       </div>
                     </div>
+                    -->
+
                     <div class="form-group">
                       <label for="" class="col-sm-2 control-label">Class Teacher</label>
                       <div class="col-sm-10">
                         <select name="class_teacher"class="form-control" >
                           @foreach ($teachers as $teacher)
-                            <option value="{{$teacher->id}}">{{$teacher->id}}</option>
+                            <option value="{{$teacher->id}}">{{$teacher->teacher_name}}</option>
                           @endforeach
                         </select>
                       </div>

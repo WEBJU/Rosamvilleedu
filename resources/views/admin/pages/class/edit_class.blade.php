@@ -16,7 +16,7 @@
       </div><!-- /.container-fluid -->
     </div>
         <h1 style="margin-left:20px;">Edit Class</h1>
-            <form class="form-horizontal" action="{{ action('ClassController@update',$id) }}" enctype="multipart/form-data" method="post">
+            <form class="form-horizontal" action="{{ action('ClassController@update',$class->id) }}" enctype="multipart/form-data" method="post">
               @csrf
                  <input type="hidden" name="_method" value="PATCH">
                     <h3>Class Information</h3>
@@ -32,12 +32,14 @@
                         <input type="number" value="{{ $class->class_capacity }}" class="form-control" name="class_capacity" id="fname" placeholder="Capacity">
                       </div>
                     </div>
+                    <!--
                     <div class="form-group">
                       <label for="other_name" class="col-sm-2 control-label">Class Prefect</label>
                       <div class="col-sm-10">
                         <input type="text" value="{{ $class->class_prefect_id }}" name="class_prefect" class="form-control" id="class_prefect" placeholder="Class Prefect">
                       </div>
                     </div>
+
                     <div class="form-group">
                       <label for="" class="col-sm-2 control-label">Class Teacher</label>
                       <div class="col-sm-10">
@@ -46,11 +48,43 @@
                             <option value="{{$class->id}}">{{$class->class_teacher_id}}</option>
                          
                         </select>
-                      </div>
+                      </div>-->
+                <div class="form-group">
+                    <label for="other_name" class="col-sm-2 control-label">Class Prefect</label>
+                    <div class="col-sm-10">
+                        <!--<input type="text" value="{{ $class->class_prefect_id }}" name="class_prefect" class="form-control" id="class_prefect" placeholder="Class Prefect">-->
+                        <select name="class_prefect" id="class_prefect" class="form-control">
+                            <!--The current prefect-->
+                            <option value="{{$class->class_prefect_id}}">{{$class->prefect_name}}</option>
+
+                            <!--The members of the class-->
+                            @foreach($class_students as $student)
+                             <option value="{{$student->id}}">{{$student->student_surname." ".$student->student_firstname." ".$student->student_other_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Class Teacher</label>
+                    <div class="col-sm-10">
+                        <select name="class_teacher"class="form-control" >
+                            <!--The current class teacher-->
+                                <option value="{{$class->class_teacher_id}}">{{$class->class_teacher_name}}</option>
+                            <!--The rest of the teachers-->
+                            @foreach ($teachers as $teacher)
+                                <option value="{{$teacher->id}}">{{$teacher->teacher_name}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
                     
-                          <div class="form-group m-2">
-                              <button  type="submit"  class="btn btn-primary mb-2">Edit Class</button>
-                          </div>
+
+                    <div class="form-group m-2">
+                        <button  type="submit"  class="btn btn-primary mb-2">Edit Class</button>
+                    </div>
+
                   </div>
 
                   <!-- /.card-footer -->

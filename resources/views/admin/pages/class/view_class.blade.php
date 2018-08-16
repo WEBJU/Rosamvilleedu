@@ -44,18 +44,22 @@
           <tr>
             <td>{{$class->class_name}}</td>
             <td>{{$class->class_capacity}}</td>
-            <td>{{$class->class_prefect}}</td>
-            <td>{{$class->class_teacher_id}}</td>
+            <td>{{$class->prefect_name}}</td>
+            <td>{{$class->teacher_name}}</td>
             
 
             <td>
               <a href="{{ action('ClassController@edit',$class['id']) }}" class="btn btn-info">Edit</a>
             </td>
-              <td><form action="{{action('ClassController@destroy',$class['id'])}}" method="post">
-              @csrf
-              <input name="_method" type="hidden" value="DELETE">
-              <button type="submit" class="btn btn-danger">Delete</button>
-            </form></td>
+
+              <td>
+                <form action="{{action('ClassController@destroy',$class['id'])}}" method="post">
+                  @csrf
+                  <input name="_method" type="hidden" value="DELETE">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </td>
+
               <td><a href="" class="btn btn-secondary">Print Details</a></td>
 
           </tr>
