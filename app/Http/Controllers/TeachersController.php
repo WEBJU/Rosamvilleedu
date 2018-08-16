@@ -16,6 +16,31 @@ class TeachersController extends Controller
      */
     public function index()
     {
+        //make work easier
+        //get all the teachers
+        $teachers = Teachers::all();
+        foreach ($teachers as $teacher){
+            //get the teacher details
+            $teacher_details = Users::find($teacher->id);
+            $teacher['sur_name'] = $teacher_details->sur_name;
+            $teacher['first_name'] = $teacher_details->first_name;
+            $teacher['last_name'] = $teacher_details->last_name;
+            $teacher['teacher_name'] = $teacher_details->sur_name." ".$teacher_details->first_name." ".$teacher_details->last_name;
+
+            //get the teacher's class
+            $class = classess::where('class_teacher_id','=',$teacher->id)->first();
+            if($class == null){
+                $teacher['class_name'] = "No class Assigned";
+            }else{
+                $teacher['class_name'] = $class->class_name;
+            }
+           //
+        }
+
+       // return $teachers;
+        return view('admin.pages.teacher.view_teacher',['teachers'=>$teachers]);
+
+        /*
         // //getting all teachers from the database
         $teacher = Teachers::all();
         // // getting all users from the database
@@ -25,6 +50,7 @@ class TeachersController extends Controller
 
         // return view('admin.pages.teacher.view_teacher', compact('user'))->with('teacher', $teacher);
         return view('admin.pages.teacher.view_teacher',compact('users'))->with('teacher', $teacher)->with('classes', $classes);
+        */
 
     }
     /**
@@ -125,14 +151,14 @@ class TeachersController extends Controller
             'teacher_fname'=>'required',
             'teacher_lname'=>'required',
             'teacher_tsc_no'=>'required',
-            'teacher_class'=>'required',            
+            //'teacher_class'=>'required',
         ]);
 
         $id = $request->input('teacher_id');
         $teacher = Teachers::find($id);
         $user = Users::find($id);
-        $class_id = $teacher->user_id;
-        $clas = classess::find($class_id);
+       // $class_id = $teacher->user_id;
+        //$clas = classess::find($class_id);
 
         if($teacher->user_id == $user->id){
             $user->sur_name = $request->input('teacher_surname');
@@ -143,10 +169,11 @@ class TeachersController extends Controller
             $teacher->teacher_tsc_no = $request->input('teacher_tsc_no');
             $teacher->save();
 
-            if($teacher->user_id == $clas->class_teacher_id){
+
+            /*if($teacher->user_id == $clas->class_teacher_id){
                 $clas->class_name = $request->input('teacher_class');
                 $clas->save();
-            }
+            }*/
 
         }
 

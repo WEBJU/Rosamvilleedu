@@ -28,7 +28,7 @@
         <table  class="table table-bordered table-striped">
           <thead>
           <tr>
-            <th>Teachers Name</th>
+            <th>Teacher's Name</th>
             <th>TSC Number</th>
               <th>Class</th>
             <th colspan="2">Action</th>
@@ -36,55 +36,33 @@
 
           </thead>
           <tbody>
-              @if(count($teacher) > 0)
-                @foreach($teacher as $teach)
-                  @if(count($users) > 0)
-                    @foreach($users as $user)
-                      @if($teach->user_id == $user->id)
-                        <tr>
-                          <td>{{$user->sur_name}} {{$user->first_name}} {{$user->last_name}}</td>
-                          <td>{{$teach->teacher_tsc_no}}</td>
-                          @if(count($classes) > 0)
-                            @foreach($classes as $clases)
-                              @if($clases->class_teacher_id == $teach->user_id)
-                              <td>{{$clases->class_name}}</td>
-                              @endif
-                            @endforeach
-              @else
-              {{-- if the no teacher exists in the database  --}}
-
-              @endif
-                        
-                        
-                        
-                        <td>
-                            <form action="/viewTeachers/destroy" method="POST">
-                              @csrf
-                              <input type="hidden" value="{{$teach->user_id}}" name="delete_teacher">
-                              <button  class="btn btn-danger m-2">Delete</button>                              
-                          </form> 
-                        </td>
-                        <td>                                                         
-                            <button 
-                            class="btn btn-info"
-                            type="button"
-                            data-teacher_id="{{$teach->user_id}}" 
-                            data-teacher_surname="{{$user->sur_name}}" 
-                            data-teacher_fname = "{{$user->first_name}}"
-                            data-teacher_lname = "{{$user->last_name}}"
-                            data-teacher_tsc_no = "{{$teach->teacher_tsc_no}}"
-                            data-teacher_class = "{{$clases->class_name}}"
-                            data-toggle="modal" 
-                            data-target="#editTeacherModal">Edit</button>
-                          
-                        </td>
-                     </tr>                      
-                    @endif
-                  @endforeach
-                @endif
-              @endforeach
-            @endif
-          
+          <!--MAKE WORK EASIER :-) -->
+          @foreach($teachers as $teacher)
+              <tr>
+                  <td>{{$teacher->teacher_name}}</td>
+                  <td>{{$teacher->teacher_tsc_no}}</td>
+                  <td>{{$teacher->class_name}}</td>
+                  <td>
+                      <form action="/viewTeachers/destroy" method="POST">
+                          @csrf
+                          <input type="hidden" value="{{$teacher->user_id}}" name="delete_teacher">
+                          <button  class="btn btn-danger m-2">Delete</button>
+                      </form>
+                  </td>
+                  <td>
+                      <button
+                          class="btn btn-info"
+                          type="button"
+                          data-teacher_id="{{$teacher->user_id}}"
+                          data-teacher_surname="{{$teacher->sur_name}}"
+                          data-teacher_fname = "{{$teacher->first_name}}"
+                          data-teacher_lname = "{{$teacher->last_name}}"
+                          data-teacher_tsc_no = "{{$teacher->teacher_tsc_no}}"
+                          data-toggle="modal"
+                          data-target="#editTeacherModal">Edit</button>
+                  </td>
+              </tr>
+          @endforeach
         </tbody>
 
         <!--Edit modal-->
@@ -97,11 +75,11 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>    
                     <div class="modal-body">
-                    <form class="form-horizontal" action="/viewTeachers/update/{{$teach->user_id}}" method="POST">
+                    <form class="form-horizontal" action="/viewTeachers/update/{{$teacher->user_id}}" method="POST">
                         @csrf
                         <div class="card-body">
                             <p class="text-info">Teacher Information</p>
-                            <input type="hidden" name="teacher_id" id="teacher_id" value="{{$teach->user_id}}">
+                            <input type="hidden" name="teacher_id" id="teacher_id" value="{{$teacher->user_id}}">
                             <div class="form-group">                                
                                 <label for="surname" class="col-sm-2 control-label">Surname</label>
                                 <div class="col-sm-10">                                    
@@ -126,12 +104,13 @@
                                     <input type="text" name="teacher_tsc_no" class="form-control" id="teacher_tsc_no">
                                 </div>
                             </div>
+                            <!--Not every teacher is a class teacher
                             <div class="form-group">                                
                                 <label for="teacher_class" class="col-sm-2 control-label">Class</label>
                                 <div class="col-sm-10">                                    
                                     <input type="text" name="teacher_class" class="form-control" id="teacher_class">
                                 </div>
-                            </div>                                                        
+                            </div>    -->
                         </div>             
     
                     <div class="modal-footer">                                                    
